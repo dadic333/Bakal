@@ -28,11 +28,13 @@ public class CableHeadBO {
     CableheadJpaController cont = new CableheadJpaController(emf);
     CabheadoutputJpaController outscont = new CabheadoutputJpaController(emf);
     Cablehead ret = new Cablehead();
+    System.out.println("\nVýpis ID po  příkazu ____Cablehead ret = new Cablehead();___" + ret.getId()+"\n");
     ret.setName(name);
     ret.setBuilding(building);
     ret.setNote(note);
     ret.setOutputcount(outputCount);
     cont.create(ret);
+    System.out.println("\nVýpis ID po  příkazu ____cont.create(ret);___" + ret.getId()+"\n");
 //  create CableHeadOUtputList filled
     List<Cabheadoutput> cabHeadOutputList = new ArrayList<Cabheadoutput>();
     for(int i=1; i<=outputCount; i++){
@@ -42,9 +44,9 @@ public class CableHeadBO {
       newOutput.setNote("");
       newOutput.setCableheadId(ret);
       outscont.create(newOutput);
-      cabHeadOutputList.add(newOutput);
+//      cabHeadOutputList.add(newOutput);
     }
-    ret.setCabheadoutputList(cabHeadOutputList);
+//    ret.setCabheadoutputList(cabHeadOutputList);
 
     return ret;
   }
@@ -90,11 +92,6 @@ public class CableHeadBO {
   public static void deleteCableHeadAndOutpustByCableHeadID(int id) {
     CableheadJpaController cont = new CableheadJpaController(emf);
     Cablehead original = cont.findCablehead(id);
-    List<Cabheadoutput> outL = original.getCabheadoutputList();
-    System.out.println("OutputList před vymazáním");
-    for (Cabheadoutput cabheadoutput : outL) {
-      System.out.println("Output ID= "+cabheadoutput.getId()+"; Phone NUmber= "+cabheadoutput.getPhonenumber());
-    }
       try {
         cont.destroy(original.getId());
       } catch (NonexistentEntityException ex) {

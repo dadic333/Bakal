@@ -9,8 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 import moje.appLayer.CabHeadOutputBO;
 import moje.appLayer.CableHeadBO;
+import moje.appLayer.DataDeviceBO;
 import moje.entity.Cabheadoutput;
 import moje.entity.Cablehead;
+import moje.entity.Datadevice;
+import moje.entity.Dataoutput;
 
 /**
  *
@@ -26,18 +29,23 @@ public class A33 {
     
 //    getAllCableHeads();
  
-    createNewCaleHeadAndCHOutputs("T25", "Českobratrská 1 25", "5.NP, dveře 519", 50);
+
+//    createNewCaleHeadAndCHOutputs("pokus2", "Českobratrská 25", "5.NP, dveře 519", 20);
  
 //    readCableHeadAllParam(1);
-//    deleteCableHeadAndOutpustByID(7);
+//    deleteCableHeadAndOutpustByID(219);
 //    getAllCableHeads();
 //    findAllCabHeadOutputsWithoutCableHeadID();
 //    deleteOutputsWithoutCableHeadID();
-    
 
 //    getAllCabHeadsOutputs();
-//    findAllCabHeadOutputsByParameter("Cabheadoutput", "5");
+
 //    readCableHeadAllParam(5);
+    
+//    createDataDeviceAndOutputs("DD3", "Uliční 25", "1.NP, dveře 101", 50);
+//    getAllDataDevices();
+//    readDataDeviceAllParam(1);
+    deleteDataDeviceAndOutpusByID(1);
 
   }
   
@@ -62,7 +70,7 @@ public class A33 {
   readCabHeadOutputList(newCableHead.getCabheadoutputList());
   }
     
-  private static void readCabHeadOutputList (List<Cabheadoutput>cableHeadOutputList){
+  private static void readCabHeadOutputList (List<Cabheadoutput> cableHeadOutputList){
   if (cableHeadOutputList.isEmpty()){
     System.out.println("NO CableHeadOutputs!!!");
   }else {
@@ -106,6 +114,8 @@ public class A33 {
 
   private static void deleteCableHeadAndOutpustByID(int id) {
     CableHeadBO.deleteCableHeadAndOutpustByCableHeadID(id);
+    readCableHeadAllParam(id);
+    
   }
 
   private static void findAllCabHeadOutputsByParameter(String attribute, String value) {
@@ -129,5 +139,52 @@ public class A33 {
     System.out.println("END__________________________________________________________________________________END");
   }
 
+  private static void createDataDeviceAndOutputs(String name, String building, String note, int outputCout) {
+    Datadevice newdataDevice = DataDeviceBO.createDadtaDeviceAndOutputs(name, building, note, outputCout);
+    System.out.println("NEW DataDevice:");
+    readDataDeviceAllParam(newdataDevice.getId());
+  }
 
+  private static void getAllDataDevices() {
+    System.out.println("All DataDevices:");
+    List<Datadevice> ret = DataDeviceBO.getAllDataDevices();
+    for (Datadevice dev : ret) {
+      System.out.println("ID= "+dev.getId()+"; name= "+dev.getName()
+              +"; building= "+dev.getBuilding()+"; note= "+dev.getNote()
+              +"; outputs cout= "+dev.getOutputcount()
+              +"; output List size= "+dev.getDataoutputList().size());
+    }
+    System.out.println("END__________________________________________________________________________________END");
+  }
+
+  private static void readDataDeviceAllParam(Integer id) {
+    Datadevice newDataDevice = DataDeviceBO.getDataDeviceByID(id);
+    System.out.println(".....Read all DataDevice Parameters......");
+    System.out.println("Výpis datového prvku s ID= "+id);   // cable reading
+    System.out.println("id= "+newDataDevice.getId()+"; name= "+newDataDevice.getName()
+            +"; building= "+newDataDevice.getBuilding()+"; note= "+ newDataDevice.getNote()
+            +"; outputCount= "+newDataDevice.getOutputcount()
+            +"; getCabheadoutputList().size()"+newDataDevice.getDataoutputList().size());
+    System.out.println("Má výstupy:");
+    readDataDeviceOutputList(newDataDevice.getDataoutputList());
+  }
+
+  private static void readDataDeviceOutputList(List<Dataoutput> dataoutputList) {
+  if (dataoutputList.isEmpty()){
+    System.out.println("NO CableHeadOutputs!!!");
+  }else {
+    for (Dataoutput out : dataoutputList) {
+      System.out.println("Output id= "+out.getId()+"; output number= "+out.getDatadevout()
+              +"; note= "+out.getNote()+"; phoneNumber= "+out.getPhonenumber()
+              +"; MAC= "+out.getMac()+"; owner DataDevice ID= "+out.getDeviceId());
+      }
+    }
+  }
+
+  private static void deleteDataDeviceAndOutpusByID(int id) {
+    DataDeviceBO.deleteDadtaDeviceAndOutpustByID(id);
+    readDataDeviceAllParam(id);
+  }
+  
+  
 }
