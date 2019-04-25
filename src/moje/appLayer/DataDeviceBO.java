@@ -42,7 +42,6 @@ public class DataDeviceBO {
       out.setMac("::::");
       out.setDeviceId(ret);
       DataOutputBO.createDataOutput(out);
-      
     }
     return ret;
   }
@@ -58,8 +57,12 @@ public class DataDeviceBO {
     Datadevice ret = cont.findDatadevice(id);
     return ret;
   }
+  
+  public static void deleteDataDeviceAndOutpustByID(Datadevice dataDevice){
+    deleteDataDeviceAndOutpustByID(dataDevice.getId());
+  }
 
-  public static void deleteDadtaDeviceAndOutpustByID(int id) {
+  public static void deleteDataDeviceAndOutpustByID(int id) {
     DatadeviceJpaController cont = new DatadeviceJpaController(emf);
     Datadevice dataDevice = cont.findDatadevice(id);
     List<Dataoutput> outputList = dataDevice.getDataoutputList();

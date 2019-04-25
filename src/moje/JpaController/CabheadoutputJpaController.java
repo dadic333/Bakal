@@ -183,12 +183,16 @@ public class CabheadoutputJpaController implements Serializable {
   
   public List<Cabheadoutput> findAllCabHeadOutputsByParameter(String attribute, String value) {
     EntityManager em = getEntityManager();
-    String a= "Cabheadoutput";
     int i= 5;
     em.getTransaction().begin();
-
+//    List<Cabheadoutput> ret = new ArrayList<>();
+//    Query q = em.createQuery(
+//            "SELECT c FROM CABHEADOUTPUT c WHERE c.ID  = :value");
+////    q.setParameter("attribute", attribute);
+//    q.setParameter("value", 5);
+//    ret = q.getResultList();
     Query query = em.createQuery("SELECT e FROM Cabheadoutput e WHERE e.cabheadout = :cout");
-
+//    query.setParameter("Cabheadoutput", a);
     query.setParameter("cout", i);
 
     List<Cabheadoutput> ret = query.getResultList();

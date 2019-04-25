@@ -88,6 +88,10 @@ public class CableHeadBO {
 
     return ret;
   }
+  
+  public static void deleteCableHeadAndOutpustByCableHead(Cablehead cableHead) {
+    deleteCableHeadAndOutpustByCableHeadID(cableHead.getId());
+  }
 
   public static void deleteCableHeadAndOutpustByCableHeadID(int id) {
     CableheadJpaController cont = new CableheadJpaController(emf);
@@ -102,7 +106,7 @@ public class CableHeadBO {
     }
 
   }
-/* OŠETŘENÍ PRÁZDNÝCH HODNOT
+/* OŠETŘENÍ PRÁZDNÝCH HODNOT z dřívější verze
   
 //    public static void editPhoneNumber(int id, Integer number, String note, String socketname) {
 //    PhonenumberJpaController cont = new PhonenumberJpaController(emf);
@@ -127,6 +131,34 @@ public class CableHeadBO {
 //      Logger.getLogger(PhoneNumberBO.class.getName()).log(Level.SEVERE, null, ex);
 //    }
 */
+
+  public static Cablehead editCableHead(int id, String name, String building, String note) {
+    CableheadJpaController cont = new CableheadJpaController(emf);
+    Cablehead newCableHead = new Cablehead();
+    Cablehead oldCableHead = cont.findCablehead(id);
+    newCableHead.setId(oldCableHead.getId());
+    //TEST PRÁZDNÝCH HODNOT Z FORMULÁŘE
+//    name=null;
+//    building=null;
+//    note=null;
+    if(name==null){
+      newCableHead.setName(oldCableHead.getName());
+    } else { newCableHead.setName(name);}
+    if(building==null){
+      newCableHead.setBuilding(oldCableHead.getBuilding());
+    } else { newCableHead.setBuilding(building);}
+    if(note==null){
+      newCableHead.setNote(oldCableHead.getNote());
+    } else { newCableHead.setNote(note);}
+    newCableHead.setOutputcount(oldCableHead.getOutputcount());
+    newCableHead.setCabheadoutputList(oldCableHead.getCabheadoutputList());
+      try {
+        cont.edit(newCableHead);
+      } catch (Exception ex) {
+        Logger.getLogger(CableHeadBO.class.getName()).log(Level.SEVERE, null, ex);
+      }
+    return newCableHead;
+  }
   
   
   

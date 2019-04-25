@@ -5,6 +5,7 @@
  */
 package moje.appLayer;
 
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
@@ -32,6 +33,12 @@ public class DataOutputBO {
       } catch (NonexistentEntityException ex) {
         Logger.getLogger(DataOutputBO.class.getName()).log(Level.SEVERE, null, ex);
       }
+  }
+
+  public static List<Dataoutput> getAllDataOutputs() {
+    DataoutputJpaController cont = new DataoutputJpaController(emf);
+    List<Dataoutput> ret = cont.findDataoutputEntities();
+    return ret;
   }
   
 }
