@@ -48,6 +48,12 @@ public class PbxBO {
     Pbx ret = cont.findPbx(id);
     return ret;
   }
+
+  public static List<Pbx> getAllPbx() {
+    PbxJpaController cont = new PbxJpaController(emf);
+    List<Pbx> ret = cont.findPbxEntities();
+    return ret;
+  }
   
   
 }

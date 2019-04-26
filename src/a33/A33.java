@@ -32,13 +32,9 @@ public class A33 {
     
     
 //    getAllCableHeads();
- 
-
 //    createNewCaleHeadAndCHOutputs("pokus2", "Českobratrská 25", "5.NP, dveře 519", 20);
- 
 //    readCableHeadAllParam(1);
 //    deleteCableHeadAndOutpustByID(112);
-//    getAllCableHeads();
 //    findAllCabHeadOutputsWithoutCableHeadID();
 //    deleteOutputsWithoutCableHeadID();
 //    getAllCabHeadsOutputs();
@@ -54,7 +50,12 @@ public class A33 {
 //    editDataDevice(1,"name 3","building 3","note 3");
 //    editDataOutput(2,"note 2", 123222, "d2:222:222:22");
 
-    createNewPbxAndOutputs("pokus2", "Českobratrská 2", "2.NP, dveře 22", 50);
+//    createNewPbxAndOutputs("pokus3", "Českobratrská 3", "3.NP, dveře 33", 50);
+    getAllPbx();
+    
+    
+    
+    
     
   }
   
@@ -283,6 +284,18 @@ public class A33 {
       }
     System.out.println("END__________________________________________________________________________________END");
     }
+  }
+
+  private static void getAllPbx() {
+    List<Pbx>newList = PbxBO.getAllPbx();
+    System.out.println("________________________-All Cable Heads-___________________________");
+    for (Pbx pbx : newList) {
+      System.out.println("ID= "+pbx.getId()+"; name= "+pbx.getName()
+              +"; building= "+pbx.getBuilding()+"; note= "+pbx.getNote()
+              +"; outputs cout= "+pbx.getOutputcount()
+              +"; output List size= "+pbx.getPbxoutputList().size());
+    }
+    System.out.println("END__________________________________________________________________________________END");
   }
   
   
