@@ -51,5 +51,30 @@ public class CabHeadOutputBO {
     List<Cabheadoutput> ret = cont.findCabheadoutputEntities();
     return ret;
   }
+
+  public static Cabheadoutput editCabHeadOutput(int id, String note, int phoneNumber) {
+    CabheadoutputJpaController cont = new CabheadoutputJpaController(emf);
+    Cabheadoutput newCabHeadOut = new Cabheadoutput();
+    Cabheadoutput oldCabHeadOut = cont.findCabheadoutput(id);
+    newCabHeadOut.setId(oldCabHeadOut.getId());
+    newCabHeadOut.setCabheadout(oldCabHeadOut.getCabheadout());
+    newCabHeadOut.setCableheadId(oldCabHeadOut.getCableheadId());
+    //TEST PRÁZDNÝCH HODNOT Z FORMULÁŘE
+//    note=null;                      // součást testu
+//    Integer pomPhoneNumber=null;    // součást testu
+    if(note==null){
+      newCabHeadOut.setNote(oldCabHeadOut.getNote());
+    } else{ newCabHeadOut.setNote(note);}
+//    if(pomPhoneNumber==null){       // součást testu
+    if((Integer)phoneNumber==null){  
+      newCabHeadOut.setPhonenumber(oldCabHeadOut.getPhonenumber());
+    } else { newCabHeadOut.setPhonenumber(phoneNumber);}
+        try {
+          cont.edit(newCabHeadOut);
+        } catch (Exception ex) {
+          Logger.getLogger(CabHeadOutputBO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    return newCabHeadOut;
+  }
   
 }

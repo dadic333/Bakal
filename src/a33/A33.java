@@ -40,7 +40,8 @@ public class A33 {
 //    deleteOutputsWithoutCableHeadID();
 //    getAllCabHeadsOutputs();
 //    readCableHeadAllParam(5);
-    editCableHead(218,"mame 4","zmenena budova a umisteni 4","zmenena poznamka 4");
+//    editCableHead(218,"mame 4","zmenena budova a umisteni 4","zmenena poznamka 4");
+    editCableHeadOutput(21,"NOTE ZMENA 7", 123777);
     
 //    createDataDeviceAndOutputs("DD5", "Uliční 25", "1.NP, dveře 101", 30);
 //    getAllDataDevices();
@@ -131,7 +132,7 @@ public class A33 {
     System.out.println("_____________________-All CableHeads Outputs-________________________");
     for (Cabheadoutput outs : ret) {
       System.out.println("ID= "+outs.getId()+"; name= "+outs.getCabheadout()
-              +"; note= "+outs.getNote()+"; Phone NUmber= "+outs.getPhonenumber()
+              +"; note= "+outs.getNote()+"; Phone Number= "+outs.getPhonenumber()
               +"; getCableheadId= "+outs.getCableheadId());
     }
     System.out.println("END__________________________________________________________________________________END");
@@ -196,6 +197,18 @@ public class A33 {
     Cablehead newCableHead = CableHeadBO.editCableHead(id,name,building,note);
     System.out.println("_______________editCableHead - VÝPIS PO ZMĚNĚ___________________");
     readCableHeadAllParam(newCableHead.getId());
+  }
+
+  private static void editCableHeadOutput(int id, String note, int phoneNumber) {
+    System.out.println("_______________editCableHeadOutput - VÝPIS PŘED ZMĚNOU___________________");
+    getAllCabHeadsOutputs();
+    Cabheadoutput newCabHeadOUtput = CabHeadOutputBO.editCabHeadOutput(id,note,phoneNumber);
+    System.out.println("_______________editCableHeadOutput - VÝPIS PO ZMĚNĚ___________________");
+    System.out.println("VÝPIS NA CABLEHEADOUTPUT S ID: "+newCabHeadOUtput.getId()
+            +"; output number= "+newCabHeadOUtput.getCabheadout()+"; note= "+newCabHeadOUtput.getNote()
+            +"; phone number= "+newCabHeadOUtput.getPhonenumber()+"; OWNER cableHead= "+newCabHeadOUtput.getCableheadId());
+
+    
   }
   
   
