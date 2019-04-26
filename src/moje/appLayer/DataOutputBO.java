@@ -25,6 +25,10 @@ public class DataOutputBO {
     DataoutputJpaController cont = new DataoutputJpaController(emf);
     cont.create(out);
   }
+  
+  static void deleteDataOutput(Dataoutput output) {
+    deleteDataOutput(output.getId());
+  }
 
   static void deleteDataOutput(int id) {
     DataoutputJpaController cont = new DataoutputJpaController(emf);

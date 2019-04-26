@@ -57,17 +57,17 @@ public class DataDeviceBO {
     Datadevice ret = cont.findDatadevice(id);
     return ret;
   }
-  
-  public static void deleteDataDeviceAndOutpustByID(Datadevice dataDevice){
-    deleteDataDeviceAndOutpustByID(dataDevice.getId());
+ 
+  public static void deleteDataDeviceAndOutpust(Datadevice dataDevice){
+    deleteDataDeviceAndOutpust(dataDevice.getId());
   }
 
-  public static void deleteDataDeviceAndOutpustByID(int id) {
+  public static void deleteDataDeviceAndOutpust(int id) {
     DatadeviceJpaController cont = new DatadeviceJpaController(emf);
     Datadevice dataDevice = cont.findDatadevice(id);
     List<Dataoutput> outputList = dataDevice.getDataoutputList();
     for (Dataoutput dataoutput : outputList) {
-      DataOutputBO.deleteDataOutput(dataoutput.getId());
+      DataOutputBO.deleteDataOutput(dataoutput);
     }
     try {
       cont.destroy(dataDevice.getId());

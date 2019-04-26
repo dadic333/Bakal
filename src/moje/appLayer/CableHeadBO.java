@@ -75,7 +75,6 @@ public class CableHeadBO {
   public static Cablehead getCableheadByID(int id) {
     CableheadJpaController cont = new CableheadJpaController(emf);
     Cablehead ret  = cont.findCablehead(id);
-
     return ret;
   }
 
@@ -87,10 +86,10 @@ public class CableHeadBO {
   }
   
   public static void deleteCableHeadAndOutpustByCableHead(Cablehead cableHead) {
-    deleteCableHeadAndOutpustByCableHeadID(cableHead.getId());
+    deleteCableHeadAndOutpustByCableHead(cableHead.getId());
   }
 
-  public static void deleteCableHeadAndOutpustByCableHeadID(int id) {
+  public static void deleteCableHeadAndOutpustByCableHead(int id) {
     CableheadJpaController cont = new CableheadJpaController(emf);
     Cablehead original = cont.findCablehead(id);
       try {
@@ -101,7 +100,6 @@ public class CableHeadBO {
     if (cont.findCablehead(original.getId())==null){ 
       CabHeadOutputBO.deleteOutputsWithoutCableHeadID();
     }
-
   }
 /* OŠETŘENÍ PRÁZDNÝCH HODNOT z dřívější verze
   

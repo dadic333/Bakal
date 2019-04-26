@@ -12,6 +12,7 @@ import moje.appLayer.CableHeadBO;
 import moje.appLayer.DataDeviceBO;
 import moje.appLayer.DataOutputBO;
 import moje.appLayer.PbxBO;
+import moje.appLayer.PbxOutputBO;
 import moje.entity.Cabheadoutput;
 import moje.entity.Cablehead;
 import moje.entity.Datadevice;
@@ -31,35 +32,32 @@ public class A33 {
   public static void main(String[] args) {
     
     
-//    getAllCableHeads();
-//    createNewCaleHeadAndCHOutputs("pokus2", "Českobratrská 25", "5.NP, dveře 519", 20);
-//    readCableHeadAllParam(1);
-//    deleteCableHeadAndOutpustByID(112);
+////    getAllCableHeads();
+////    createNewCaleHeadAndCHOutputs("pokus2", "Českobratrská 25", "5.NP, dveře 519", 20);
+////    readCableHeadAllParam(1);
+////    deleteCableHeadAndOutpustByID(112);
 //    findAllCabHeadOutputsWithoutCableHeadID();
 //    deleteOutputsWithoutCableHeadID();
-//    getAllCabHeadsOutputs();
-//    readCableHeadAllParam(5);
-//    editCableHead(218,"mame 4","zmenena budova a umisteni 4","zmenena poznamka 4");
-//    editCableHeadOutput(21,"NOTE ZMENA 7", 123777);
+////    getAllCabHeadsOutputs();
+////    editCableHead(218,"mame 4","zmenena budova a umisteni 4","zmenena poznamka 4");
+////    editCableHeadOutput(21,"NOTE ZMENA 7", 123777);
     
-//    createDataDeviceAndOutputs("DD5", "Uliční 25", "1.NP, dveře 101", 30);
-//    getAllDataDevices();
-//    readDataDeviceAllParam(1);
-//    deleteDataDeviceAndOutpusByID(2);
-//    getAllDataOutputs();
-//    editDataDevice(1,"name 3","building 3","note 3");
-//    editDataOutput(2,"note 2", 123222, "d2:222:222:22");
+////    createDataDeviceAndOutputs("DD5", "Uliční 25", "1.NP, dveře 101", 30);
+////    getAllDataDevices();
+////    readDataDeviceAllParam(1);
+////    deleteDataDeviceAndOutpus(2);
+////    getAllDataOutputs();
+////    editDataDevice(1,"name 3","building 3","note 3");
+////    editDataOutput(2,"note 2", 123222, "d2:222:222:22");
 
 //    createNewPbxAndOutputs("pokus3", "Českobratrská 3", "3.NP, dveře 33", 50);
-    getAllPbx();
-    
-    
-    
-    
-    
+//    getAllPbx();
+//    deletePbxAndOutputs(1);
+//    getAllPbxOutputs();
+//    readPbxAllParam(2);
+//    editPbx(2,"name 1","building 1","note 1");
+    editPbxOutput(51,"note 2", 123222);
   }
-  
-  
   
   private static void createNewCaleHeadAndCHOutputs(String name, String building, String note, int outputCout) {
     Cablehead newCH = CableHeadBO.createNewCaleHeadAndCHOutputs(name, building, note, outputCout);
@@ -107,7 +105,7 @@ public class A33 {
   }
 
   private static void deleteCableHeadAndOutpustByCableHeadID(int id) {
-     CableHeadBO.deleteCableHeadAndOutpustByCableHeadID(id);
+     CableHeadBO.deleteCableHeadAndOutpustByCableHead(id);
   }
 
   private static void findAllCabHeadOutputsWithoutCableHeadID() {
@@ -123,12 +121,12 @@ public class A33 {
     Cablehead cableHead = CableHeadBO.getCableheadByID(id);
     System.out.println("_______________VÝPIS CABLEHEAD PŘED VYMAZÁNÍM_____________________");
     readCableHeadAllParam(cableHead.getId());
-    CableHeadBO.deleteCableHeadAndOutpustByCableHeadID(id);    
+    CableHeadBO.deleteCableHeadAndOutpustByCableHead(id);    
     System.out.println("_______________VÝPIS CABLEHEAD PO VYMAZÁNÍM_____________________");
     if(CableHeadBO.getCableheadByID(id)==null){
       System.out.println("-CABLEHEAD ID: '"+cableHead.getId()+"' BYL VYMAZÁN-");
     } else { 
-      readCableHeadAllParam(cableHead.getId());
+      readCableHeadAllParam(CableHeadBO.getCableheadByID(id).getId());
     }
   }
 
@@ -198,16 +196,16 @@ public class A33 {
     }
   }
 
-  private static void deleteDataDeviceAndOutpusByID(int id) {
+  private static void deleteDataDeviceAndOutpus(int id) {
     Datadevice dataDevice = DataDeviceBO.getDataDeviceByID(id);
     System.out.println("_______________VÝPIS DATADEVICE PŘED VYMAZÁNÍM_____________________");
     readDataDeviceAllParam(dataDevice.getId());
-    DataDeviceBO.deleteDataDeviceAndOutpustByID(id);
+    DataDeviceBO.deleteDataDeviceAndOutpust(id);
     System.out.println("_______________VÝPIS DATADEVICE PO VYMAZÁNÍM_____________________");
     if(DataDeviceBO.getDataDeviceByID(id)==null){
       System.out.println("-DATADEVICE ID: '"+dataDevice.getId()+"' BYL VYMAZÁN-");
     } else { 
-      readDataDeviceAllParam(dataDevice.getId());
+      readDataDeviceAllParam(DataDeviceBO.getDataDeviceByID(id).getId());
     }
   }
 
@@ -296,6 +294,48 @@ public class A33 {
               +"; output List size= "+pbx.getPbxoutputList().size());
     }
     System.out.println("END__________________________________________________________________________________END");
+  }
+
+  private static void deletePbxAndOutputs(int id) {
+    Pbx pbx = PbxBO.getPbxByID(id);
+    System.out.println("_______________VÝPIS PBX PŘED VYMAZÁNÍM_____________________");
+    readPbxAllParam(pbx.getId());
+    PbxBO.deletePbxAndOutputs(pbx);
+    System.out.println("_______________VÝPIS PBX PO VYMAZÁNÍM_____________________");
+    if(PbxBO.getPbxByID(id)==null) {
+      System.out.println("-PBX ID: '"+pbx.getId()+"' BYL VYMAZÁN-");
+    } else { 
+      readPbxAllParam(PbxBO.getPbxByID(id).getId());
+    }
+  }
+
+  private static void getAllPbxOutputs() {
+    List<Pbxoutput> ret = PbxOutputBO.getAllPbxOutputs();
+    System.out.println("_____________________-All PBX Outputs-________________________");
+    for (Pbxoutput outs : ret) {
+      System.out.println("ID= "+outs.getId()+"; name= "+outs.getPbxout()
+              +"; note= "+outs.getNote()+"; Phone Number= "+outs.getPhonenumber()
+              +"; getPbxId= "+outs.getPbxId());
+    }
+    System.out.println("END__________________________________________________________________________________END");
+  }
+
+  private static void editPbx(int id, String name, String building, String note) {
+    System.out.println("_______________editPBX - VÝPIS PŘED ZMĚNOU___________________");
+    readPbxAllParam(id);
+    Pbx newPbx = PbxBO.editPbx(id,name,building,note);
+    System.out.println("_______________editPBX - VÝPIS PO ZMĚNĚ___________________");
+    readPbxAllParam(newPbx.getId());
+  }
+
+  private static void editPbxOutput(int id, String note, int phoneNumber) {
+    System.out.println("_______________editPbxOutput - VÝPIS PŘED ZMĚNOU___________________");
+    getAllPbxOutputs();
+    Pbxoutput newPbxOutput = PbxOutputBO.editPbxOutput(id,note,phoneNumber);
+    System.out.println("_______________editPbxOutput - VÝPIS PO ZMĚNĚ___________________");
+    System.out.println("VÝPIS NA PBXOUTPUT S ID: "+newPbxOutput.getId()
+            +"; output number= "+newPbxOutput.getPbxout()+"; note= "+newPbxOutput.getNote()
+            +"; phone number= "+newPbxOutput.getPhonenumber()+"; OWNER PBX= "+newPbxOutput.getPbxId());
   }
   
   

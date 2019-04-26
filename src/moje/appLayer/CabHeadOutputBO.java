@@ -47,8 +47,7 @@ public class CabHeadOutputBO {
 
   public static List<Cabheadoutput> getAllCabHeadsOutputs() {
     CabheadoutputJpaController cont = new CabheadoutputJpaController(emf);
-    List<Cabheadoutput> ret = cont.findCabheadoutputEntities();
-    return ret;
+    return cont.findCabheadoutputEntities();
   }
 
   public static Cabheadoutput editCabHeadOutput(int id, String note, int phoneNumber) {
