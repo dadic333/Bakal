@@ -75,9 +75,33 @@ public class DataDeviceBO {
       Logger.getLogger(DataDeviceBO.class.getName()).log(Level.SEVERE, null, ex);
     }
   }
-  
-  
-  
-  
+
+  public static Datadevice editdataDevice(int id, String name, String building, String note) {
+    DatadeviceJpaController cont = new DatadeviceJpaController(emf);
+    Datadevice newDataDevice = new Datadevice();
+    Datadevice oldDataDevice = cont.findDatadevice(id);
+    newDataDevice.setId(oldDataDevice.getId());
+    newDataDevice.setOutputcount(oldDataDevice.getOutputcount());
+    newDataDevice.setDataoutputList(oldDataDevice.getDataoutputList());
+    //TEST PRÁZDNÝCH HODNOT Z FORMULÁŘE
+//    name=null;        // součást testu
+//    building=null;    // součást testu
+//    note=null;        // součást testu
+    if(name==null){
+      newDataDevice.setName(oldDataDevice.getName());
+    } else { newDataDevice.setName(name);}
+    if(building==null){
+      newDataDevice.setBuilding(oldDataDevice.getBuilding());
+    } else { newDataDevice.setBuilding(building);}
+    if(note==null){
+      newDataDevice.setNote(oldDataDevice.getNote());
+    } else { newDataDevice.setNote(note);}
+    try {
+      cont.edit(newDataDevice);
+    } catch (Exception ex) {
+      Logger.getLogger(DataDeviceBO.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return newDataDevice;
+  }
   
 }

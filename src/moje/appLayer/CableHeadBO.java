@@ -138,9 +138,9 @@ public class CableHeadBO {
     Cablehead oldCableHead = cont.findCablehead(id);
     newCableHead.setId(oldCableHead.getId());
     //TEST PRÁZDNÝCH HODNOT Z FORMULÁŘE
-//    name=null;
-//    building=null;
-//    note=null;
+//    name=null;      // součást testu
+//    building=null;  // součást testu
+//    note=null;      // součást testu
     if(name==null){
       newCableHead.setName(oldCableHead.getName());
     } else { newCableHead.setName(name);}

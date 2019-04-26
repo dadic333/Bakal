@@ -40,5 +40,34 @@ public class DataOutputBO {
     List<Dataoutput> ret = cont.findDataoutputEntities();
     return ret;
   }
+
+  public static Dataoutput editDataOutput(int id, String note, int phoneNumber, String mac) {
+    DataoutputJpaController cont = new DataoutputJpaController(emf);
+    Dataoutput newDataOutput = new Dataoutput();
+    Dataoutput oldDataOutput = cont.findDataoutput(id);
+    newDataOutput.setId(oldDataOutput.getId());
+    newDataOutput.setDatadevout(oldDataOutput.getDatadevout());
+    newDataOutput.setDeviceId(oldDataOutput.getDeviceId());
+    //TEST PRÁZDNÝCH HODNOT Z FORMULÁŘE
+//    note=null;                      // součást testu
+//    Integer pomPhoneNumber=null;    // součást testu
+//    mac=null;                       // součást testu
+    if(note==null){
+      newDataOutput.setNote(oldDataOutput.getNote());
+    } else{ newDataOutput.setNote(note);}
+//    if(pomPhoneNumber==null){       // součást testu
+    if((Integer)phoneNumber==null){  
+      newDataOutput.setPhonenumber(oldDataOutput.getPhonenumber());
+    } else { newDataOutput.setPhonenumber(phoneNumber);}
+    if(mac==null){
+      newDataOutput.setMac(oldDataOutput.getMac());
+    } else { newDataOutput.setMac(mac);}
+      try {
+        cont.edit(newDataOutput);
+      } catch (Exception ex) {
+        Logger.getLogger(DataOutputBO.class.getName()).log(Level.SEVERE, null, ex);
+      }
+    return newDataOutput;
+  }
   
 }

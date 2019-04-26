@@ -34,21 +34,24 @@ public class A33 {
 //    createNewCaleHeadAndCHOutputs("pokus2", "Českobratrská 25", "5.NP, dveře 519", 20);
  
 //    readCableHeadAllParam(1);
-//    deleteCableHeadAndOutpustByID(219);
+//    deleteCableHeadAndOutpustByID(112);
 //    getAllCableHeads();
 //    findAllCabHeadOutputsWithoutCableHeadID();
 //    deleteOutputsWithoutCableHeadID();
 //    getAllCabHeadsOutputs();
 //    readCableHeadAllParam(5);
 //    editCableHead(218,"mame 4","zmenena budova a umisteni 4","zmenena poznamka 4");
-    editCableHeadOutput(21,"NOTE ZMENA 7", 123777);
+//    editCableHeadOutput(21,"NOTE ZMENA 7", 123777);
     
 //    createDataDeviceAndOutputs("DD5", "Uliční 25", "1.NP, dveře 101", 30);
 //    getAllDataDevices();
 //    readDataDeviceAllParam(1);
-//    deleteDataDeviceAndOutpusByID(3);
+//    deleteDataDeviceAndOutpusByID(2);
 //    getAllDataOutputs();
+//    editDataDevice(1,"name 3","building 3","note 3");
+//    editDataOutput(2,"note 2", 123222, "d2:222:222:22");
 
+    
     
   }
   
@@ -113,7 +116,16 @@ public class A33 {
   }
 
   private static void deleteCableHeadAndOutpustByID(int id) {
+    Cablehead cableHead = CableHeadBO.getCableheadByID(id);
+    System.out.println("_______________VÝPIS CABLEHEAD PŘED VYMAZÁNÍM_____________________");
+    readCableHeadAllParam(cableHead.getId());
     CableHeadBO.deleteCableHeadAndOutpustByCableHeadID(id);    
+    System.out.println("_______________VÝPIS CABLEHEAD PO VYMAZÁNÍM_____________________");
+    if(CableHeadBO.getCableheadByID(id)==null){
+      System.out.println("-CABLEHEAD ID: '"+cableHead.getId()+"' BYL VYMAZÁN-");
+    } else { 
+      readCableHeadAllParam(cableHead.getId());
+    }
   }
 
   private static void findAllCabHeadOutputsByParameter(String attribute, String value) {
@@ -183,7 +195,16 @@ public class A33 {
   }
 
   private static void deleteDataDeviceAndOutpusByID(int id) {
+    Datadevice dataDevice = DataDeviceBO.getDataDeviceByID(id);
+    System.out.println("_______________VÝPIS DATADEVICE PŘED VYMAZÁNÍM_____________________");
+    readDataDeviceAllParam(dataDevice.getId());
     DataDeviceBO.deleteDataDeviceAndOutpustByID(id);
+    System.out.println("_______________VÝPIS DATADEVICE PO VYMAZÁNÍM_____________________");
+    if(DataDeviceBO.getDataDeviceByID(id)==null){
+      System.out.println("-DATADEVICE ID: '"+dataDevice.getId()+"' BYL VYMAZÁN-");
+    } else { 
+      readDataDeviceAllParam(dataDevice.getId());
+    }
   }
 
   private static void getAllDataOutputs() {
@@ -207,8 +228,25 @@ public class A33 {
     System.out.println("VÝPIS NA CABLEHEADOUTPUT S ID: "+newCabHeadOUtput.getId()
             +"; output number= "+newCabHeadOUtput.getCabheadout()+"; note= "+newCabHeadOUtput.getNote()
             +"; phone number= "+newCabHeadOUtput.getPhonenumber()+"; OWNER cableHead= "+newCabHeadOUtput.getCableheadId());
+  }
 
-    
+  private static void editDataDevice(int id, String name, String building, String note) {
+    System.out.println("_______________editDataDevice - VÝPIS PŘED ZMĚNOU___________________");
+    readDataDeviceAllParam(id);
+    Datadevice newDataDevice = DataDeviceBO.editdataDevice(id,name,building,note);
+    System.out.println("_______________editDataDevice - VÝPIS PO ZMĚNĚ___________________");
+    readDataDeviceAllParam(newDataDevice.getId());
+  }
+
+  private static void editDataOutput(int id, String note, int phoneNumber, String mac) {
+    System.out.println("_______________editDataOutput - VÝPIS PŘED ZMĚNOU___________________");
+    getAllDataOutputs();
+    Dataoutput newDataOutput = DataOutputBO.editDataOutput(id,note,phoneNumber,mac);
+    System.out.println("_______________editDataOutput - VÝPIS PO ZMĚNĚ___________________");
+    System.out.println("VÝPIS NA DataDevice S ID: "+newDataOutput.getId()
+            +"; output number= "+newDataOutput.getDatadevout()+"; note= "+newDataOutput.getNote()
+            +"; phone number= "+newDataOutput.getPhonenumber()+"; MAC= "+newDataOutput.getMac()
+            +"; OWNER DataDevice= "+newDataOutput.getDeviceId());
   }
   
   
