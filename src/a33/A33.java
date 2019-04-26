@@ -11,10 +11,13 @@ import moje.appLayer.CabHeadOutputBO;
 import moje.appLayer.CableHeadBO;
 import moje.appLayer.DataDeviceBO;
 import moje.appLayer.DataOutputBO;
+import moje.appLayer.PbxBO;
 import moje.entity.Cabheadoutput;
 import moje.entity.Cablehead;
 import moje.entity.Datadevice;
 import moje.entity.Dataoutput;
+import moje.entity.Pbx;
+import moje.entity.Pbxoutput;
 
 /**
  *
@@ -51,7 +54,7 @@ public class A33 {
 //    editDataDevice(1,"name 3","building 3","note 3");
 //    editDataOutput(2,"note 2", 123222, "d2:222:222:22");
 
-    
+    createNewPbxAndOutputs("pokus2", "Českobratrská 2", "2.NP, dveře 22", 50);
     
   }
   
@@ -65,7 +68,7 @@ public class A33 {
   
   private static void readCableHeadAllParam(int id) {
   Cablehead newCableHead = CableHeadBO.getCableheadByID(id);
-    System.out.println(".....Read Cablehead all Parameters......");
+  System.out.println(".....Read Cablehead all Parameters......");
   System.out.println("Výpis kabelové hlavy s ID= "+id);   // cable reading
   System.out.println("id= "+newCableHead.getId()+"; name= "+newCableHead.getName()
           +"; building= "+newCableHead.getBuilding()+"; note= "
@@ -247,6 +250,39 @@ public class A33 {
             +"; output number= "+newDataOutput.getDatadevout()+"; note= "+newDataOutput.getNote()
             +"; phone number= "+newDataOutput.getPhonenumber()+"; MAC= "+newDataOutput.getMac()
             +"; OWNER DataDevice= "+newDataOutput.getDeviceId());
+  }
+
+  private static void createNewPbxAndOutputs(String name, String building, String note, int outputCount) {
+    Pbx newPbx = PbxBO.createNewPbxAndOutputs(name, building, note, outputCount);
+    System.out.println("NEW PBX:");
+    readPbxAllParam(newPbx.getId());
+  }
+
+  private static void readPbxAllParam(Integer id) {
+    Pbx newPbx = PbxBO.getPbxByID(id);
+    System.out.println(".....Read PBX all Parameters......");
+    System.out.println("Výpis PBX s ID= "+id);   // cable reading
+    System.out.println("id= "+newPbx.getId()+"; name= "+newPbx.getName()
+            +"; building= "+newPbx.getBuilding()+"; note= "
+            + newPbx.getNote()+"; outputCount= "+newPbx.getOutputcount()
+            +"; getCabheadoutputList().size()"+newPbx.getPbxoutputList().size());
+    System.out.println("Má výstupy:");
+    // cableHeadList reading
+    readPbxOutputList(newPbx.getPbxoutputList());
+  }
+
+  private static void readPbxOutputList(List<Pbxoutput> pbxoutputList) {
+  if (pbxoutputList.isEmpty()){
+    System.out.println("NO PBX Outputs!!!");
+  }else {
+    System.out.println("___________________________-All PBX Outputs-______________________________");   
+    for (Pbxoutput pbxout : pbxoutputList) {
+      System.out.println("PbxOutput id= "+pbxout.getId()+"; output= "+pbxout.getPbxout()
+              +"; note= "+pbxout.getNote()+"; phoneNumber= "+pbxout.getPhonenumber()
+              +"; owner cableHead ID= "+pbxout.getPbxId());
+      }
+    System.out.println("END__________________________________________________________________________________END");
+    }
   }
   
   

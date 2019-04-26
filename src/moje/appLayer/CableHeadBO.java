@@ -28,14 +28,14 @@ public class CableHeadBO {
     CableheadJpaController cont = new CableheadJpaController(emf);
     CabheadoutputJpaController outscont = new CabheadoutputJpaController(emf);
     Cablehead ret = new Cablehead();
-    System.out.println("\nVýpis ID po  příkazu ____Cablehead ret = new Cablehead();___" + ret.getId()+"\n");
+//    System.out.println("\nVýpis ID po  příkazu ____Cablehead ret = new Cablehead();___" + ret.getId()+"\n");  //ověření reference na objekt
     ret.setName(name);
     ret.setBuilding(building);
     ret.setNote(note);
     ret.setOutputcount(outputCount);
     cont.create(ret);
-    System.out.println("\nVýpis ID po  příkazu ____cont.create(ret);___" + ret.getId()+"\n");
-//  create CableHeadOUtputList filled
+//    System.out.println("\nVýpis ID po  příkazu ____cont.create(ret);___" + ret.getId()+"\n"); //ověření reference na objekt
+//  create and fill CableHeadOutputList
     List<Cabheadoutput> cabHeadOutputList = new ArrayList<Cabheadoutput>();
     for(int i=1; i<=outputCount; i++){
       Cabheadoutput newOutput = new Cabheadoutput();
@@ -46,8 +46,6 @@ public class CableHeadBO {
       outscont.create(newOutput);
 //      cabHeadOutputList.add(newOutput);
     }
-//    ret.setCabheadoutputList(cabHeadOutputList);
-
     return ret;
   }
   
@@ -71,8 +69,7 @@ public class CableHeadBO {
       outscont.create(newOutput);
       cabHeadOutputList.add(newOutput);
     }
-
-    ret.setCabheadoutputList(cabHeadOutputList);
+//    ret.setCabheadoutputList(cabHeadOutputList);
   }
 
   public static Cablehead getCableheadByID(int id) {
