@@ -50,7 +50,7 @@ public class Hwposition implements Serializable {
   @Column(name = "NOTE", length = 100)
   private String note;
   @Column(name = "PHONENUMBER")
-  private Character phonenumber;
+  private Integer phonenumber;
   @Column(name = "TECHNOLOGYTYPE")
   private Character technologytype;
   @JoinColumn(name = "TELECHANGE_ID", referencedColumnName = "ID")
@@ -96,11 +96,11 @@ public class Hwposition implements Serializable {
     this.note = note;
   }
 
-  public Character getPhonenumber() {
+  public Integer getPhonenumber() {
     return phonenumber;
   }
 
-  public void setPhonenumber(Character phonenumber) {
+  public void setPhonenumber(Integer phonenumber) {
     this.phonenumber = phonenumber;
   }
 
