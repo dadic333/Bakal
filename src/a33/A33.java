@@ -68,7 +68,8 @@ public class A33 {
 //    deleteTelExchange(2);
 //    getAllHwPositions();
 //    addTelExchangeHwPositions(3, 30);
-    editTelExchange();
+//    editTelExchange(3, "name 2", "building 2", "note 2");
+//    editHwPosition(1, "name 4", 444, 444444, "d", "note 4" );
     
   }
   
@@ -414,8 +415,8 @@ public class A33 {
     System.out.println("_____________________-All HW positions-________________________");
     for (Hwposition outs : ret) {
       System.out.println("ID= "+outs.getId()+"; name= "+outs.getName()
-              +"; telEchange number= "+outs.getTelexchangeoutput()+"; note= "+outs.getNote()
-              +"; Phone Number= "+outs.getPhonenumber()+"; getPbxId= "+outs.getTechnologytype()
+              +"; telEchange number= "+outs.getTelexchangeoutput()+"; Phone Number= "+outs.getPhonenumber()
+              +"; technology type= "+outs.getTechnologytype()+"; note= "+outs.getNote()
               +"; OWNER TelExchange ID= "+outs.getTelechangeId());
     }
     System.out.println("END__________________________________________________________________________________END");
@@ -426,6 +427,26 @@ public class A33 {
     Telexchange telEx = TelExchangeBO.getTelexchangeByID(telExchangeID);
     List<Hwposition> hwList = telEx.getHwpositionList();
     readTelExchangeHwPositionsList(hwList);
+  }
+
+  private static void editTelExchange(int id, String name, String building, String note) {
+    System.out.println("_______________editTelExchange - VÝPIS PŘED ZMĚNOU___________________");
+    readTelExchangeAllParam(id);
+    Telexchange telEx = TelExchangeBO.editTelExchange(id,name,building,note);
+    System.out.println("_______________editTelExchange - VÝPIS PO ZMĚNĚ______________________");
+    readTelExchangeAllParam(telEx.getId());
+  }
+
+  private static void editHwPosition(int id, String name, int output, int phoneNumber, String technologyType, String note) {
+    System.out.println("_______________editHwPosition - VÝPIS PŘED ZMĚNOU___________________");
+    getAllHwPositions();
+    Hwposition hwPosition = HwPositionBO.editHwPosition(id, name, output, phoneNumber, technologyType, note);
+    System.out.println("_______________editHwPosition - VÝPIS PO ZMĚNĚ_______________________");
+    System.out.println("ID= "+hwPosition.getId()+"; name= "+hwPosition.getName()
+        +"; telEchange number= "+hwPosition.getTelexchangeoutput()+"; Phone Number= "+hwPosition.getPhonenumber()
+        +"; technology type= "+hwPosition.getTechnologytype()+"; note= "+hwPosition.getNote()
+        +"; OWNER TelExchange ID= "+hwPosition.getTelechangeId());
+    System.out.println("END__________________________________________________________________________________END");      
   }
   
   

@@ -62,5 +62,33 @@ public class TelExchangeBO {
       Logger.getLogger(TelExchangeBO.class.getName()).log(Level.SEVERE, null, ex);
     }
   }
+
+  public static Telexchange editTelExchange(int id, String name, String building, String note) {
+    TelexchangeJpaController cont = new TelexchangeJpaController(emf);
+    Telexchange newTelexchange = new Telexchange();
+    Telexchange oldTelexchange = cont.findTelexchange(id);
+    newTelexchange.setId(oldTelexchange.getId());
+    //TEST PRÁZDNÝCH HODNOT Z FORMULÁŘE
+//    name=null;      // součást testu
+//    building=null;  // součást testu
+//    note=null;      // součást testu
+    if(name==null){
+      newTelexchange.setName(oldTelexchange.getName());
+    } else { newTelexchange.setName(name);}
+    if(building==null){
+      newTelexchange.setBuilding(oldTelexchange.getBuilding());
+    } else { newTelexchange.setBuilding(building);}
+    if(note==null){
+      newTelexchange.setNote(oldTelexchange.getNote());
+    } else { newTelexchange.setNote(note);}
+    newTelexchange.setOutputcount(oldTelexchange.getOutputcount());
+    newTelexchange.setHwpositionList(oldTelexchange.getHwpositionList());
+      try {
+        cont.edit(newTelexchange);
+      } catch (Exception ex) {
+        Logger.getLogger(CableHeadBO.class.getName()).log(Level.SEVERE, null, ex);
+      }
+    return newTelexchange;
+  }
   
 }

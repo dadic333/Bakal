@@ -56,6 +56,44 @@ public class HwPositionBO {
       cont.create(newHwPosition);
     }
   }
+
+  public static Hwposition editHwPosition(int id, String name, int output, int phoneNumber, String technologyType, String note) {
+    HwpositionJpaController cont = new HwpositionJpaController(emf);
+    Hwposition newHwPosition = new Hwposition();
+    Hwposition oldHwPosition = cont.findHwposition(id);
+    newHwPosition.setId(oldHwPosition.getId());
+    newHwPosition.setTelexchangeoutput(oldHwPosition.getTelexchangeoutput());
+    newHwPosition.setTelechangeId(oldHwPosition.getTelechangeId());
+    //TEST PRÁZDNÝCH HODNOT Z FORMULÁŘE
+//        name=null;                      // součást testu
+//        Integer pomOutput = null;       // součást testu
+//        Integer pomPhoneNumber=null;    // součást testu
+//        technologyType=null;            // součást testu
+//        note=null;                      // součást testu
+    if(name==null){
+      newHwPosition.setName(oldHwPosition.getName());
+    } else { newHwPosition.setName(name);}
+//        if(pomOutput==null){            // součást testu - Při testu toto odkrýt
+    if((Integer)output==null){        //  - Při testu toto zakrýt
+      newHwPosition.setTelexchangeoutput(oldHwPosition.getTelexchangeoutput());
+    } else { newHwPosition.setTelexchangeoutput(output);}  
+//        if(pomPhoneNumber==null){       // součást testu
+    if((Integer)phoneNumber==null){   //  - Při testu toto zakrýt
+      newHwPosition.setPhonenumber(oldHwPosition.getPhonenumber());
+    } else { newHwPosition.setPhonenumber(phoneNumber);}
+    if(technologyType==null){
+      newHwPosition.setTechnologytype(oldHwPosition.getTechnologytype());
+    } else { newHwPosition.setTechnologytype(technologyType.trim().charAt(0));}
+    if(note==null){
+      newHwPosition.setNote(oldHwPosition.getNote());
+    } else{ newHwPosition.setNote(note);}
+        try {
+          cont.edit(newHwPosition);
+        } catch (Exception ex) {
+          Logger.getLogger(CabHeadOutputBO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    return newHwPosition;
+  }
   
   
 }
