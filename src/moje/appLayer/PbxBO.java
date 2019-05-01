@@ -39,6 +39,7 @@ public class PbxBO {
       Pbxoutput newOutput = new Pbxoutput();
       newOutput.setPbxout(i);
       newOutput.setPhonenumber(0);
+      newOutput.setTechnologytype('n');
       newOutput.setNote("");
       newOutput.setPbxId(ret);
       outscont.create(newOutput);

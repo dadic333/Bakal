@@ -40,7 +40,7 @@ public class PbxOutputBO {
     return cont.findPbxoutputEntities();
   }
 
-  public static Pbxoutput editPbxOutput(int id, String note, int phoneNumber) {
+  public static Pbxoutput editPbxOutput(int id, String technologyType, String note, int phoneNumber) {
     PbxoutputJpaController cont = new PbxoutputJpaController(emf);
     Pbxoutput newPbxOut = new Pbxoutput();
     Pbxoutput oldPbxOut = cont.findPbxoutput(id);
@@ -50,6 +50,7 @@ public class PbxOutputBO {
     //TEST PRÁZDNÝCH HODNOT Z FORMULÁŘE
 //    note=null;                      // součást testu
 //    Integer pomPhoneNumber=null;    // součást testu
+//    technologyType=null;
     if(note==null){
       newPbxOut.setNote(oldPbxOut.getNote());
     } else{ newPbxOut.setNote(note);}
@@ -57,6 +58,10 @@ public class PbxOutputBO {
     if((Integer)phoneNumber==null){  
       newPbxOut.setPhonenumber(oldPbxOut.getPhonenumber());
     } else { newPbxOut.setPhonenumber(phoneNumber);}
+    technologyType = technologyType.toLowerCase();
+    if(technologyType==null){
+      newPbxOut.setTechnologytype(oldPbxOut.getTechnologytype());
+    } else { newPbxOut.setTechnologytype(technologyType.trim().charAt(0));}
         try {
           cont.edit(newPbxOut);
         } catch (Exception ex) {

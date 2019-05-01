@@ -54,13 +54,13 @@ public class A33 {
 ////    editDataDevice(1,"name 3","building 3","note 3");
 ////    editDataOutput(2,"note 2", 123222, "d2:222:222:22");
 
-//    createNewPbxAndOutputs("pokus3", "Českobratrská 3", "3.NP, dveře 33", 50);
+//    createNewPbxAndOutputs("pokus4", "Českobratrská 4", "4.NP, dveře 44", 50);
 //    getAllPbx();
 //    deletePbxAndOutputs(1);
 //    getAllPbxOutputs();
 //    readPbxAllParam(2);
 //    editPbx(2,"name 1","building 1","note 1");
-//    editPbxOutput(21,"note 3", 123333);
+    editPbxOutput(21, "d", "note 4", 124444);
 
 //    creatTelExchange("name 2", "building 2", "note 2");
 //    getAllTelExchange();
@@ -292,7 +292,7 @@ public class A33 {
     for (Pbxoutput pbxout : pbxoutputList) {
       System.out.println("PbxOutput id= "+pbxout.getId()+"; output= "+pbxout.getPbxout()
               +"; note= "+pbxout.getNote()+"; phoneNumber= "+pbxout.getPhonenumber()
-              +"; owner cableHead ID= "+pbxout.getPbxId());
+              +"; technology type= "+pbxout.getTechnologytype()+"; owner cableHead ID= "+pbxout.getPbxId());
       }
     System.out.println("END__________________________________________________________________________________END");
     }
@@ -329,7 +329,7 @@ public class A33 {
     for (Pbxoutput outs : ret) {
       System.out.println("ID= "+outs.getId()+"; name= "+outs.getPbxout()
               +"; note= "+outs.getNote()+"; Phone Number= "+outs.getPhonenumber()
-              +"; getPbxId= "+outs.getPbxId());
+              +"; technollogy type= "+outs.getTechnologytype()+"; getPbxId= "+outs.getPbxId());
     }
     System.out.println("END__________________________________________________________________________________END");
   }
@@ -342,14 +342,15 @@ public class A33 {
     readPbxAllParam(newPbx.getId());
   }
 
-  private static void editPbxOutput(int id, String note, int phoneNumber) {
+  private static void editPbxOutput(int id, String technologyType, String note, int phoneNumber) {
     System.out.println("_______________editPbxOutput - VÝPIS PŘED ZMĚNOU___________________");
     getAllPbxOutputs();
-    Pbxoutput newPbxOutput = PbxOutputBO.editPbxOutput(id,note,phoneNumber);
+    Pbxoutput newPbxOutput = PbxOutputBO.editPbxOutput(id, technologyType, note, phoneNumber);
     System.out.println("_______________editPbxOutput - VÝPIS PO ZMĚNĚ___________________");
     System.out.println("VÝPIS NA PBXOUTPUT S ID: "+newPbxOutput.getId()
             +"; output number= "+newPbxOutput.getPbxout()+"; note= "+newPbxOutput.getNote()
-            +"; phone number= "+newPbxOutput.getPhonenumber()+"; OWNER PBX= "+newPbxOutput.getPbxId());
+            +"; phone number= "+newPbxOutput.getPhonenumber()+"; technology type= "+newPbxOutput.getTechnologytype()
+            +"; OWNER PBX= "+newPbxOutput.getPbxId());
   }
 
   private static void creatTelExchange(String name, String building, String note) {

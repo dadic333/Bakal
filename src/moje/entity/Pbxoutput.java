@@ -47,6 +47,8 @@ public class Pbxoutput implements Serializable {
   private String note;
   @Column(name = "PHONENUMBER")
   private Integer phonenumber;
+  @Column(name = "TECHNOLOGYTYPE")
+  private Character technologytype;
   @JoinColumn(name = "PBX_ID", referencedColumnName = "ID")
   @ManyToOne(fetch = FetchType.EAGER)
   private Pbx pbxId;
@@ -80,6 +82,14 @@ public class Pbxoutput implements Serializable {
 
   public void setNote(String note) {
     this.note = note;
+  }
+  
+  public Character getTechnologytype() {
+    return technologytype;
+  }
+
+  public void setTechnologytype(Character technologytype) {
+    this.technologytype = technologytype;
   }
 
   public Integer getPhonenumber() {
