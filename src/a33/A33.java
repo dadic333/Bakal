@@ -60,7 +60,7 @@ public class A33 {
 //    getAllPbxOutputs();
 //    readPbxAllParam(2);
 //    editPbx(2,"name 1","building 1","note 1");
-    editPbxOutput(21, "d", "note 4", 124444);
+//    editPbxOutput(21, "d", "note 4", 124444);
 
 //    creatTelExchange("name 2", "building 2", "note 2");
 //    getAllTelExchange();

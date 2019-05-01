@@ -15,6 +15,8 @@ import moje.entity.Cablehead;
 import moje.JpaController.CabheadoutputJpaController;
 import moje.JpaController.exceptions.NonexistentEntityException;
 import moje.entity.Cabheadoutput;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  *
@@ -77,11 +79,21 @@ public class CableHeadBO {
     Cablehead ret  = cont.findCablehead(id);
     return ret;
   }
+  
+  public static JSONObject getCableheadForJson(int id) throws JSONException {
+    CableheadJpaController cont = new CableheadJpaController(emf);
+    Cablehead ret  = cont.findCablehead(id);
+    JSONObject json = new JSONObject();
+    json.put("id", ret.getId());
+    json.put("name", ret.getName());
+    json.put("note", ret.getNote());
+    json.put("buiding", ret.getBuilding());
+    return json;
+  }
 
   public static List<Cablehead> getAllCableHeads() {
     CableheadJpaController cont = new CableheadJpaController(emf);
     List<Cablehead> ret = cont.findCableheadEntities();
-
     return ret;
   }
   
