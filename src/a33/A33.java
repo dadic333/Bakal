@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package a33;
 
 import java.util.ArrayList;
@@ -36,10 +31,10 @@ public class A33 {
   public static void main(String[] args) {
     
     
-////    getAllCableHeads();
-////    createNewCaleHeadAndCHOutputs("pokus2", "Českobratrská 25", "5.NP, dveře 519", 20);
-////    readCableHeadAllParam(1);
-////    deleteCableHeadAndOutpustByID(112);
+    getAllCableHeads();
+//    createNewCaleHeadAndCHOutputs("147", "Českobratrská 147", "5.NP, dveře 147", 20);
+//    readCableHeadAllParam(2);
+//    deleteCableHeadAndOutpustByID(446);
 //    findAllCabHeadOutputsWithoutCableHeadID();
 //    deleteOutputsWithoutCableHeadID();
 ////    getAllCabHeadsOutputs();
@@ -79,7 +74,7 @@ public class A33 {
     readCableHeadAllParam(newCH.getId());
   }
   
-  private static void readCableHeadAllParam(int id) {
+  public static void readCableHeadAllParam(int id) {
   Cablehead newCableHead = CableHeadBO.getCableheadByID(id);
   System.out.println(".....Read Cablehead all Parameters......");
   System.out.println("Výpis kabelové hlavy s ID= "+id);   // cable reading
