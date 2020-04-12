@@ -68,5 +68,11 @@ public class DataOutputBO {
       }
     return newDataOutput;
   }
+
+    public static List<Dataoutput> findPhoneNumber(Integer phoneNumber) {
+        DataoutputJpaController cont = new DataoutputJpaController(emf);
+        List<Dataoutput> ret = cont.findAllDataOutputsByPhoneNumber(phoneNumber);
+        return ret; 
+    }
   
 }

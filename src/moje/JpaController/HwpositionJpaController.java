@@ -43,9 +43,10 @@ public class HwpositionJpaController implements Serializable {
         telechangeId = em.merge(telechangeId);
       }
       em.getTransaction().commit();
+      em.close();
     } finally {
       if (em != null) {
-        em.close();
+      
       }
     }
   }
@@ -159,5 +160,16 @@ public class HwpositionJpaController implements Serializable {
       em.close();
     }
   }
+
+    public List<Hwposition> findAllHwOutputsByPhoneNumber(Integer phoneNumber) {
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        Query query = em.createNamedQuery("Hwposition.findByPhonenumber");
+        query.setParameter("phonenumber", phoneNumber);
+        List<Hwposition> ret = query.getResultList();
+        em.getTransaction().commit();
+        em.close();
+        return ret;
+    }
   
 }

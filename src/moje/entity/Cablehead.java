@@ -18,8 +18,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+
 
 /**
  *
@@ -27,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "CABLEHEAD")
-@XmlRootElement
+
 @NamedQueries({
   @NamedQuery(name = "Cablehead.findAll", query = "SELECT c FROM Cablehead c")
   , @NamedQuery(name = "Cablehead.findById", query = "SELECT c FROM Cablehead c WHERE c.id = :id")
@@ -101,7 +100,7 @@ public class Cablehead implements Serializable {
     this.outputcount = outputcount;
   }
 
-  @XmlTransient
+
   public List<Cabheadoutput> getCabheadoutputList() {
     return cabheadoutputList;
   }

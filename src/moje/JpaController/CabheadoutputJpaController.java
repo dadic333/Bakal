@@ -186,9 +186,10 @@ public class CabheadoutputJpaController implements Serializable {
 ////    q.setParameter("attribute", attribute);
 //    q.setParameter("value", 5);
 //    ret = q.getResultList();
-    Query query = em.createQuery("SELECT e FROM Cabheadoutput e WHERE e.cabheadout = :cout");
+    Query query = em.createQuery("SELECT e FROM Cabheadoutput e WHERE e.phonenumber = :value");
 //    query.setParameter("Cabheadoutput", a);
-    query.setParameter("cout", i);
+    query.setParameter("value", value);
+    
 
     List<Cabheadoutput> ret = query.getResultList();
     em.getTransaction().commit();
@@ -212,4 +213,16 @@ public class CabheadoutputJpaController implements Serializable {
 //    
 //    return ret;
 //  }
+
+    public List<Cabheadoutput> findAllCabHeadOutputsByPhoneNumber(Integer phoneNumber) {
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        Query query = em.createQuery("SELECT e FROM Cabheadoutput e WHERE e.phonenumber = :value");
+        query.setParameter("value", phoneNumber);
+
+        List<Cabheadoutput> ret = query.getResultList();
+        em.getTransaction().commit();
+        em.close();
+        return ret;
+      }
 }

@@ -2,6 +2,9 @@ package a33;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import moje.appLayer.CabHeadOutputBO;
 import moje.appLayer.CableHeadBO;
 import moje.appLayer.DataDeviceBO;
@@ -30,18 +33,19 @@ public class A33 {
    */
   public static void main(String[] args) {
     
-    
-    getAllCableHeads();
+//    findPhoneNumber(123);
+//    getAllCableHeads();
 //    createNewCaleHeadAndCHOutputs("147", "Českobratrská 147", "5.NP, dveře 147", 20);
 //    readCableHeadAllParam(2);
 //    deleteCableHeadAndOutpustByID(446);
 //    findAllCabHeadOutputsWithoutCableHeadID();
+//    findCableHeadOutputById(121);
 //    deleteOutputsWithoutCableHeadID();
 ////    getAllCabHeadsOutputs();
 ////    editCableHead(218,"mame 4","zmenena budova a umisteni 4","zmenena poznamka 4");
-////    editCableHeadOutput(21,"NOTE ZMENA 7", 123777);
+//    editCableHeadOutput(121,"NOTE ZMENA 7", 1234567897);
     
-////    createDataDeviceAndOutputs("DD5", "Uliční 25", "1.NP, dveře 101", 30);
+//    createDataDeviceAndOutputs("DD5", "Uliční 25", "1.NP, dveře 101", 30);
 ////    getAllDataDevices();
 ////    readDataDeviceAllParam(1);
 ////    deleteDataDeviceAndOutpus(2);
@@ -57,14 +61,16 @@ public class A33 {
 //    editPbx(2,"name 1","building 1","note 1");
 //    editPbxOutput(21, "d", "note 4", 124444);
 
-//    creatTelExchange("name 2", "building 2", "note 2");
+//    creatTelExchange("Telex 1", "building 4", "poznámka 4");
 //    getAllTelExchange();
-//    readTelExchangeAllParam(4);
+
 //    deleteTelExchange(2);
 //    getAllHwPositions();
-//    addTelExchangeHwPositions(3, 30);
+    addTelExchangeHwPositions(617, 5);
+    readTelExchangeAllParam(617);
 //    editTelExchange(3, "name 2", "building 2", "note 2");
-//    editHwPosition(1, "name 4", 444, 444444, "d", "note 4" );
+//    editHwPosition(2, "name 2", 222, 22222, "d", "note 2" );
+//    deleteHwPosition(9);
     
   }
   
@@ -193,7 +199,7 @@ public class A33 {
 
   private static void readDataDeviceOutputList(List<Dataoutput> dataoutputList) {
   if (dataoutputList.isEmpty()){
-    System.out.println("NO CableHeadOutputs!!!");
+    System.out.println("NO DataOutputs!!!");
   }else { 
     System.out.println("________________________-All DataOutputs-___________________________");
     for (Dataoutput out : dataoutputList) {
@@ -350,19 +356,19 @@ public class A33 {
 
   private static void creatTelExchange(String name, String building, String note) {
     Telexchange newTE = TelExchangeBO.createNewTelExchange(name, building, note);
-    System.out.println("NEW TelExchange:");
+    System.out.println("NEW TelExchange: ");
     readTelExchangeAllParam(newTE.getId());
   }
 
   private static void readTelExchangeAllParam(Integer id) {
-    Telexchange newTE = TelExchangeBO.getTelexchangeByID(id);
+    Telexchange newTE = TelExchangeBO.getTelExchangeByID(id);
     System.out.println(".....Read TelExchange all Parameters......");
     System.out.println("Výpis TelExchange s ID= "+id);   // cable reading
     System.out.println("id= "+newTE.getId()+"; name= "+newTE.getName()
             +"; building= "+newTE.getBuilding()+"; note= "+ newTE.getNote()
             +"; outputCount= "+newTE.getOutputcount()
-            +"; getCabheadoutputList().size()"+newTE.getHwpositionList().size());
-    System.out.println("Má výstupy:");
+            +"; getHwpositionList().size() "+newTE.getHwpositionList().size());
+    System.out.println("Má výstupy: ");
     readTelExchangeHwPositionsList(newTE.getHwpositionList());
   }
 
@@ -372,7 +378,7 @@ public class A33 {
     for (Telexchange telExchange : newList) {
       System.out.println("ID= "+telExchange.getId()+"; name= "+telExchange.getName()
               +"; building= "+telExchange.getBuilding()+"; note= "+telExchange.getNote()
-              +"; outputs cout= "+telExchange.getOutputcount()
+              +"; outputs cout= "+telExchange.getOutputcount()+"; getHWCount= "+telExchange.getHWCount()
               +"; HwPosition List size= "+telExchange.getHwpositionList().size());
     }
     System.out.println("END__________________________________________________________________________________END");
@@ -394,15 +400,15 @@ public class A33 {
   }
 
   private static void deleteTelExchange(int id) {
-    Telexchange telExchange = TelExchangeBO.getTelexchangeByID(id);
+    Telexchange telExchange = TelExchangeBO.getTelExchangeByID(id);
     System.out.println("_______________VÝPIS TelExchange PŘED VYMAZÁNÍM_____________________");
     readTelExchangeAllParam(telExchange.getId());
     TelExchangeBO.deleteTelExchange(telExchange);
     System.out.println("_______________VÝPIS PBX PO VYMAZÁNÍM_____________________");
-    if(TelExchangeBO.getTelexchangeByID(id)==null) {
+    if(TelExchangeBO.getTelExchangeByID(id)==null) {
       System.out.println("-TelExchange ID: '"+telExchange.getId()+"' BYL VYMAZÁN-");
     } else { 
-      readPbxAllParam(TelExchangeBO.getTelexchangeByID(id).getId());
+      readPbxAllParam(TelExchangeBO.getTelExchangeByID(id).getId());
     }
   }
 
@@ -420,9 +426,8 @@ public class A33 {
 
   private static void addTelExchangeHwPositions(int telExchangeID, int count) {
     HwPositionBO.addTelExchangeHwPositions(telExchangeID, count);
-    Telexchange telEx = TelExchangeBO.getTelexchangeByID(telExchangeID);
-    List<Hwposition> hwList = telEx.getHwpositionList();
-    readTelExchangeHwPositionsList(hwList);
+    Telexchange x = TelExchangeBO.getTelExchangeByID(telExchangeID);
+    readTelExchangeAllParam(x.getId());
   }
 
   private static void editTelExchange(int id, String name, String building, String note) {
@@ -444,7 +449,46 @@ public class A33 {
         +"; OWNER TelExchange ID= "+hwPosition.getTelechangeId());
     System.out.println("END__________________________________________________________________________________END");      
   }
-  
-  
-  
+
+    private static void findCableHeadOutputById(int id) {
+        Cabheadoutput out = CabHeadOutputBO.findCableHeadOutputById(id);
+        int chid = out.getCableheadId().getId();
+        System.out.println("______________________-CabHead Output by Output ID-________________________");
+        System.out.println("CableHeadOutput name: "+out.getId()+"; note: "+out.getNote()
+                +"; phone numer: "+out.getPhonenumber()+"; CableHead name: "+moje.appLayer.CableHeadBO.getCableheadByID(chid));
+        System.out.println("END__________________________________________________________________________________END");      
+    }
+
+    private static void findPhoneNumber(Integer phoneNumber) {
+        List<Cabheadoutput> cabHeadOutput = CabHeadOutputBO.findPhoneNumber(phoneNumber);
+        List<Dataoutput> dataDeviceOutput = DataOutputBO.findPhoneNumber(phoneNumber);
+        List<Pbxoutput> pbxOutput = PbxOutputBO.findPhoneNumber(phoneNumber);
+        List<Hwposition> hwPosition = HwPositionBO.findPhoneNumber(phoneNumber);
+        readCabHeadOutputList(cabHeadOutput);
+        readDataDeviceOutputList(dataDeviceOutput);
+        readPbxOutputList(pbxOutput);
+        readTelExchangeHwPositionsList(hwPosition);
+    }
+
+    private static void deleteHwPosition (Integer id) {
+        Hwposition hwPositionToDelete = moje.appLayer.HwPositionBO.findHwPositionById(id);
+        if(hwPositionToDelete==null) {
+            System.out.println("    ZADAL SI NEPLATNÉ ID  "+id+"  !!!!!!!!!!!!!!!!!!!!");
+        } else { 
+            Telexchange telExchange = TelExchangeBO.getTelExchangeByID(hwPositionToDelete.getTelechangeId().getId());
+            Integer telExId = telExchange.getId();
+            System.out.println("_______________VÝPIS TelExchange PŘED VYMAZÁNÍM HW pozice_____________________");
+            readTelExchangeAllParam(telExId);
+            HwPositionBO.deleteHwPosition(hwPositionToDelete);
+            if(HwPositionBO.findHwPositionById(id)==null) {
+              System.out.println("-HW pozice ID: '"+id+"' BYLA VYMAZÁNA-");
+              System.out.println("_______________VÝPIS PBX PO VYMAZÁNÍM HW pozice_____________________");
+              readTelExchangeAllParam(telExId);
+            } else { 
+                System.out.println("    VYMAZÁNÍ SE NEPOVEDLO   \n\n");
+                readTelExchangeAllParam(telExId);
+            }
+        }
+    }
+   
 }

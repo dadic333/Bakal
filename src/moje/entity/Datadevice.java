@@ -18,8 +18,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+
 
 /**
  *
@@ -27,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "DATADEVICE")
-@XmlRootElement
+
 @NamedQueries({
   @NamedQuery(name = "Datadevice.findAll", query = "SELECT d FROM Datadevice d")
   , @NamedQuery(name = "Datadevice.findById", query = "SELECT d FROM Datadevice d WHERE d.id = :id")
@@ -101,7 +100,7 @@ public class Datadevice implements Serializable {
     this.outputcount = outputcount;
   }
 
-  @XmlTransient
+
   public List<Dataoutput> getDataoutputList() {
     return dataoutputList;
   }

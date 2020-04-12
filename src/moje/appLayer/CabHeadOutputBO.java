@@ -27,6 +27,11 @@ public class CabHeadOutputBO {
       }
     }
   }
+  public static Cabheadoutput findCableHeadOutputById(int id){
+      CabheadoutputJpaController cont = new CabheadoutputJpaController(emf);
+      Cabheadoutput ret = cont.findCabheadoutput(id);
+      return ret; 
+  }
 
   public static List<Cabheadoutput> findAllCabHeadOutputsWithoutCableHeadID() {
     CabheadoutputJpaController cont = new CabheadoutputJpaController(emf);
@@ -69,5 +74,10 @@ public class CabHeadOutputBO {
         }
     return newCabHeadOut;
   }
+    public static List<Cabheadoutput> findPhoneNumber(Integer phoneNumber) {
+        CabheadoutputJpaController cont = new CabheadoutputJpaController(emf);
+        List<Cabheadoutput> ret = cont.findAllCabHeadOutputsByPhoneNumber(phoneNumber);
+        return ret; 
+    }
   
 }

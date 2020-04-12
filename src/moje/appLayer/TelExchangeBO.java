@@ -30,7 +30,7 @@ public class TelExchangeBO {
     return ret;
   }
 
-  public static Telexchange getTelexchangeByID(Integer id) {
+  public static Telexchange getTelExchangeByID(Integer id) {
     TelexchangeJpaController cont = new TelexchangeJpaController(emf);
     return cont.findTelexchange(id);
   }
@@ -84,6 +84,20 @@ public class TelExchangeBO {
         Logger.getLogger(CableHeadBO.class.getName()).log(Level.SEVERE, null, ex);
       }
     return newTelexchange;
+  }
+  
+  public static Telexchange editTelExchangeByTelExchange(Telexchange edit) {
+    TelexchangeJpaController cont = new TelexchangeJpaController(emf);
+    Integer editId = edit.getId();
+    Telexchange editTelexchange;
+      try {
+        cont.edit(edit);
+        
+      } catch (Exception ex) {
+        Logger.getLogger(CableHeadBO.class.getName()).log(Level.SEVERE, null, ex);
+      }
+    editTelexchange = cont.findTelexchange(editId);
+    return editTelexchange;
   }
   
 }

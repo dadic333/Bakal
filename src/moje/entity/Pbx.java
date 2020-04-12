@@ -18,8 +18,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+
 
 /**
  *
@@ -27,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "PBX")
-@XmlRootElement
+
 @NamedQueries({
   @NamedQuery(name = "Pbx.findAll", query = "SELECT p FROM Pbx p")
   , @NamedQuery(name = "Pbx.findById", query = "SELECT p FROM Pbx p WHERE p.id = :id")
@@ -101,7 +100,7 @@ public class Pbx implements Serializable {
     this.outputcount = outputcount;
   }
 
-  @XmlTransient
+
   public List<Pbxoutput> getPbxoutputList() {
     return pbxoutputList;
   }

@@ -18,8 +18,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+
 
 /**
  *
@@ -27,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "TELEXCHANGE")
-@XmlRootElement
+
 @NamedQueries({
   @NamedQuery(name = "Telexchange.findAll", query = "SELECT t FROM Telexchange t")
   , @NamedQuery(name = "Telexchange.findById", query = "SELECT t FROM Telexchange t WHERE t.id = :id")
@@ -95,13 +94,19 @@ public class Telexchange implements Serializable {
 
   public Integer getOutputcount() {
     return outputcount;
+    //return hwpositionList.size();
   }
 
   public void setOutputcount(Integer outputcount) {
     this.outputcount = outputcount;
   }
 
-  @XmlTransient
+  public Integer getHWCount () {
+    if (hwpositionList == null) {return 0;
+        }else {return hwpositionList.size();}
+    }
+  
+
   public List<Hwposition> getHwpositionList() {
     return hwpositionList;
   }

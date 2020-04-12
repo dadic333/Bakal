@@ -53,10 +53,9 @@ public class PbxOutputBO {
     if((Integer)phoneNumber==null){  
       newPbxOut.setPhonenumber(oldPbxOut.getPhonenumber());
     } else { newPbxOut.setPhonenumber(phoneNumber);}
-    technologyType = technologyType.toLowerCase();
     if(technologyType==null){
       newPbxOut.setTechnologytype(oldPbxOut.getTechnologytype());
-    } else { newPbxOut.setTechnologytype(technologyType.trim().charAt(0));}
+    } else { newPbxOut.setTechnologytype(technologyType.toUpperCase().trim().charAt(0));}
         try {
           cont.edit(newPbxOut);
         } catch (Exception ex) {
@@ -64,6 +63,12 @@ public class PbxOutputBO {
         }
     return newPbxOut;
   }
+
+    public static List<Pbxoutput> findPhoneNumber(Integer phoneNumber) {
+        PbxoutputJpaController cont = new PbxoutputJpaController(emf);
+        List<Pbxoutput> ret = cont.findAllPbxOutputsByPhoneNumber(phoneNumber);
+        return ret;
+    }
   
   
   

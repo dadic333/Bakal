@@ -37,8 +37,8 @@ public class CableHeadBO {
     for(int i=1; i<=outputCount; i++){
       Cabheadoutput newOutput = new Cabheadoutput();
       newOutput.setCabheadout(i);
-      newOutput.setPhonenumber(0);
-      newOutput.setNote("");
+      //newOutput.setPhonenumber(0); // není potřeba
+      newOutput.setNote("neuvedeno");
       newOutput.setCableheadId(ret);
       outscont.create(newOutput);
 //      cabHeadOutputList.add(newOutput);
@@ -60,7 +60,7 @@ public class CableHeadBO {
     for(int i=1; i<=outputCount; i++){
       Cabheadoutput newOutput = new Cabheadoutput();
       newOutput.setCabheadout(i);
-      newOutput.setPhonenumber(0);
+      //newOutput.setPhonenumber(0); // není potřeba
       newOutput.setNote("");
       newOutput.setCableheadId(ret);
       outscont.create(newOutput);

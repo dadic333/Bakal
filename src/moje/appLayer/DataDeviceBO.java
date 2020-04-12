@@ -18,22 +18,22 @@ public class DataDeviceBO {
   
   private static EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("a33PU");
 
-  public static Datadevice createDadtaDeviceAndOutputs(String name, String building, String note, int outputCout) {
+  public static Datadevice createDadtaDeviceAndOutputs(String name, String building, String note, int outputCount) {
     DatadeviceJpaController cont = new DatadeviceJpaController(emf);
     
     Datadevice ret = new Datadevice();
     ret.setName(name);
     ret.setBuilding(building);
     ret.setNote(note);
-    ret.setOutputcount(outputCout);
+    ret.setOutputcount(outputCount);
     List<Dataoutput>dataoutputList = new ArrayList<Dataoutput>();
     ret.setDataoutputList(dataoutputList);
     cont.create(ret);
-    for (int i = 1; i <= outputCout; i++) {
+    for (int i = 1; i <= outputCount; i++) {
       Dataoutput out = new Dataoutput();
       out.setDatadevout(i);
-      out.setPhonenumber(0);
-      out.setNote("");
+      //out.setPhonenumber(0); // není potřeba
+      out.setNote("neuvedeno");
       out.setMac("::::");
       out.setDeviceId(ret);
       DataOutputBO.createDataOutput(out);

@@ -159,5 +159,17 @@ public class PbxoutputJpaController implements Serializable {
       em.close();
     }
   }
+
+    public List<Pbxoutput> findAllPbxOutputsByPhoneNumber(Integer phoneNumber) {
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        Query query = em.createQuery("SELECT e FROM Pbxoutput e WHERE e.phonenumber = :value");
+        query.setParameter("value", phoneNumber);
+
+        List<Pbxoutput> ret = query.getResultList();
+        em.getTransaction().commit();
+        em.close();
+        return ret;        
+    }
   
 }
