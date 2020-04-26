@@ -50,7 +50,7 @@ public class CabHeadOutputBO {
     return cont.findCabheadoutputEntities();
   }
 
-  public static Cabheadoutput editCabHeadOutput(int id, String note, int phoneNumber) {
+  public static Cabheadoutput editCabHeadOutput(int id, String note, Integer phoneNumber) {
     CabheadoutputJpaController cont = new CabheadoutputJpaController(emf);
     Cabheadoutput newCabHeadOut = new Cabheadoutput();
     Cabheadoutput oldCabHeadOut = cont.findCabheadoutput(id);
@@ -64,9 +64,11 @@ public class CabHeadOutputBO {
       newCabHeadOut.setNote(oldCabHeadOut.getNote());
     } else{ newCabHeadOut.setNote(note);}
 //    if(pomPhoneNumber==null){       // součást testu
-    if((Integer)phoneNumber==null){  
+/*    if((Integer)phoneNumber==null){  
       newCabHeadOut.setPhonenumber(oldCabHeadOut.getPhonenumber());
     } else { newCabHeadOut.setPhonenumber(phoneNumber);}
+*/    
+    newCabHeadOut.setPhonenumber(phoneNumber);
         try {
           cont.edit(newCabHeadOut);
         } catch (Exception ex) {
