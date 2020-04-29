@@ -35,27 +35,28 @@ public class PbxOutputBO {
     return cont.findPbxoutputEntities();
   }
 
-  public static Pbxoutput editPbxOutput(int id, String technologyType, String note, int phoneNumber) {
+  public static Pbxoutput editPbxOutput(int id, String technologyType, String note, Integer phoneNumber) {
     PbxoutputJpaController cont = new PbxoutputJpaController(emf);
     Pbxoutput newPbxOut = new Pbxoutput();
     Pbxoutput oldPbxOut = cont.findPbxoutput(id);
     newPbxOut.setId(oldPbxOut.getId());
     newPbxOut.setPbxout(oldPbxOut.getPbxout());
     newPbxOut.setPbxId(oldPbxOut.getPbxId());
-    //TEST PRÁZDNÝCH HODNOT Z FORMULÁŘE
-//    note=null;                      // součást testu
-//    Integer pomPhoneNumber=null;    // součást testu
-//    technologyType=null;
+
     if(note==null){
       newPbxOut.setNote(oldPbxOut.getNote());
     } else{ newPbxOut.setNote(note);}
-//    if(pomPhoneNumber==null){       // součást testu
-    if((Integer)phoneNumber==null){  
+
+/*    if((Integer)phoneNumber==null){           // Pokud nebudu chtít akceptovat "null" vstupy   - toto odzávorkuji
       newPbxOut.setPhonenumber(oldPbxOut.getPhonenumber());
     } else { newPbxOut.setPhonenumber(phoneNumber);}
+*/
+    newPbxOut.setPhonenumber(phoneNumber);      // Pokud nebudu chtít akceptovat "null" vstupy  - toto vymažu
+
     if(technologyType==null){
       newPbxOut.setTechnologytype(oldPbxOut.getTechnologytype());
     } else { newPbxOut.setTechnologytype(technologyType.toUpperCase().trim().charAt(0));}
+    
         try {
           cont.edit(newPbxOut);
         } catch (Exception ex) {

@@ -57,18 +57,17 @@ public class CabHeadOutputBO {
     newCabHeadOut.setId(oldCabHeadOut.getId());
     newCabHeadOut.setCabheadout(oldCabHeadOut.getCabheadout());
     newCabHeadOut.setCableheadId(oldCabHeadOut.getCableheadId());
-    //TEST PRÁZDNÝCH HODNOT Z FORMULÁŘE
-//    note=null;                      // součást testu
-//    Integer pomPhoneNumber=null;    // součást testu
+
     if(note==null){
       newCabHeadOut.setNote(oldCabHeadOut.getNote());
     } else{ newCabHeadOut.setNote(note);}
-//    if(pomPhoneNumber==null){       // součást testu
-/*    if((Integer)phoneNumber==null){  
+
+/*    if((Integer)phoneNumber==null){               // Pokud nebudu chtít akceptovat "null" vstupy   - toto odzávorkuji
       newCabHeadOut.setPhonenumber(oldCabHeadOut.getPhonenumber());
     } else { newCabHeadOut.setPhonenumber(phoneNumber);}
 */    
-    newCabHeadOut.setPhonenumber(phoneNumber);
+    newCabHeadOut.setPhonenumber(phoneNumber);      // Pokud nebudu chtít akceptovat "null" vstupy  - toto vymažu
+    
         try {
           cont.edit(newCabHeadOut);
         } catch (Exception ex) {

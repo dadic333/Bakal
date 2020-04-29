@@ -69,29 +69,29 @@ public class HwPositionBO {
     newHwPosition.setTelexchangeoutput(oldHwPosition.getTelexchangeoutput());
     newHwPosition.setTelechangeId(oldHwPosition.getTelechangeId());
     technologyType  = technologyType.toLowerCase();
-    //TEST PRÁZDNÝCH HODNOT Z FORMULÁŘE
-//        name=null;                      // součást testu
-//        Integer pomOutput = null;       // součást testu
-//        Integer pomPhoneNumber=null;    // součást testu
-//        technologyType=null;            // součást testu
-//        note=null;                      // součást testu
+
     if(name==null){
       newHwPosition.setName(oldHwPosition.getName());
     } else { newHwPosition.setName(name);}
-//        if(pomOutput==null){            // součást testu - Při testu toto odkrýt
+    
     if(output==null){        //  - Při testu toto zakrýt
       newHwPosition.setTelexchangeoutput(oldHwPosition.getTelexchangeoutput());
     } else { newHwPosition.setTelexchangeoutput(output);}  
-//        if(pomPhoneNumber==null){       // součást testu - Při testu toto odkrýt
-    if(phoneNumber==null){   //  - Při testu toto zakrýt
+    
+/*    if(phoneNumber==null){                        // Pokud nebudu chtít akceptovat "null" vstupy   - toto odzávorkuji
       newHwPosition.setPhonenumber(oldHwPosition.getPhonenumber());
     } else { newHwPosition.setPhonenumber(phoneNumber);}
+*/
+    newHwPosition.setPhonenumber(phoneNumber);      // Pokud nebudu chtít akceptovat "null" vstupy  - toto vymažu
+    
     if(technologyType==null){
       newHwPosition.setTechnologytype(oldHwPosition.getTechnologytype());
     } else { newHwPosition.setTechnologytype(technologyType.toUpperCase().trim().charAt(0));}
+    
     if(note==null){
       newHwPosition.setNote(oldHwPosition.getNote());
     } else{ newHwPosition.setNote(note);}
+    
         try {
           cont.edit(newHwPosition);
         } catch (Exception ex) {

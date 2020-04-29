@@ -46,7 +46,7 @@ public class A33 {
 //    editCableHeadOutput(121,"NOTE ZMENA 7", 1234567897);
     
 //    createDataDeviceAndOutputs("DD5", "Uliční 25", "1.NP, dveře 101", 30);
-////    getAllDataDevices();
+    getAllDataDevices();
 ////    readDataDeviceAllParam(1);
 ////    deleteDataDeviceAndOutpus(2);
 ////    getAllDataOutputs();
@@ -59,17 +59,17 @@ public class A33 {
 //    getAllPbxOutputs();
 //    readPbxAllParam(2);
 //    editPbx(2,"name 1","building 1","note 1");
-//    editPbxOutput(21, "d", "note 4", 124444);
+//    editPbxOutput(21, "a", "nový note", 22222);
 
 //    creatTelExchange("Telex 1", "building 4", "poznámka 4");
 //    getAllTelExchange();
 
 //    deleteTelExchange(2);
 //    getAllHwPositions();
-    addTelExchangeHwPositions(617, 5);
-    readTelExchangeAllParam(617);
+//    addTelExchangeHwPositions(616, 5);
+//    readTelExchangeAllParam(616);
 //    editTelExchange(3, "name 2", "building 2", "note 2");
-//    editHwPosition(2, "name 2", 222, 22222, "d", "note 2" );
+//    editHwPosition(10, "name 2", 222, 22222, "d", "note 2" );
 //    deleteHwPosition(9);
     
   }

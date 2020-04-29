@@ -40,27 +40,28 @@ public class DataOutputBO {
     return ret;
   }
 
-  public static Dataoutput editDataOutput(int id, String note, int phoneNumber, String mac) {
+  public static Dataoutput editDataOutput(int id, String note, Integer phoneNumber, String mac) {
     DataoutputJpaController cont = new DataoutputJpaController(emf);
     Dataoutput newDataOutput = new Dataoutput();
     Dataoutput oldDataOutput = cont.findDataoutput(id);
     newDataOutput.setId(oldDataOutput.getId());
     newDataOutput.setDatadevout(oldDataOutput.getDatadevout());
     newDataOutput.setDeviceId(oldDataOutput.getDeviceId());
-    //TEST PRÁZDNÝCH HODNOT Z FORMULÁŘE
-//    note=null;                      // součást testu
-//    Integer pomPhoneNumber=null;    // součást testu
-//    mac=null;                       // součást testu
+    
     if(note==null){
       newDataOutput.setNote(oldDataOutput.getNote());
     } else{ newDataOutput.setNote(note);}
-//    if(pomPhoneNumber==null){       // součást testu
-    if((Integer)phoneNumber==null){  
+
+/*    if((Integer)phoneNumber==null){               // Pokud nebudu chtít akceptovat "null" vstupy   - toto odzávorkuji
       newDataOutput.setPhonenumber(oldDataOutput.getPhonenumber());
     } else { newDataOutput.setPhonenumber(phoneNumber);}
+*/
+    newDataOutput.setPhonenumber(phoneNumber);      // Pokud nebudu chtít akceptovat "null" vstupy  - toto vymažu
+    
     if(mac==null){
       newDataOutput.setMac(oldDataOutput.getMac());
     } else { newDataOutput.setMac(mac);}
+    
       try {
         cont.edit(newDataOutput);
       } catch (Exception ex) {

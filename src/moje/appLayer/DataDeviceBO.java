@@ -34,7 +34,7 @@ public class DataDeviceBO {
       out.setDatadevout(i);
       //out.setPhonenumber(0); // není potřeba
       out.setNote("neuvedeno");
-      out.setMac("::::");
+      out.setMac("neuvedeno");
       out.setDeviceId(ret);
       DataOutputBO.createDataOutput(out);
     }
