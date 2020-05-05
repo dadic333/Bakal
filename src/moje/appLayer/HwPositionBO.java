@@ -47,7 +47,7 @@ public class HwPositionBO {
     Telexchange telEx = TelExchangeBO.getTelExchangeByID(telExchangeID);
     for (int i = 0; i < count; i++) {
       Hwposition newHwPosition = new Hwposition();
-      newHwPosition.setName("0");
+      //newHwPosition.setName("0"); // není potřeba
       newHwPosition.setTelexchangeoutput(i+1);
       //newHwPosition.setPhonenumber(0); // není potřeba
       newHwPosition.setNote("neuvedeno");
@@ -70,9 +70,11 @@ public class HwPositionBO {
     newHwPosition.setTelechangeId(oldHwPosition.getTelechangeId());
     technologyType  = technologyType.toLowerCase();
 
-    if(name==null){
+/*    if(name==null){                               // Pokud nebudu chtít akceptovat "null" vstupy   - toto odzávorkuji
       newHwPosition.setName(oldHwPosition.getName());
     } else { newHwPosition.setName(name);}
+*/
+    newHwPosition.setName(name);                    // Pokud nebudu chtít akceptovat "null" vstupy  - toto vymažu
     
     if(output==null){        //  - Při testu toto zakrýt
       newHwPosition.setTelexchangeoutput(oldHwPosition.getTelexchangeoutput());

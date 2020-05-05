@@ -34,6 +34,12 @@ public class DataOutputBO {
       }
   }
 
+    public static Dataoutput findDataDeviceOutputById(Integer id){
+      DataoutputJpaController cont = new DataoutputJpaController(emf);
+      Dataoutput ret = cont.findDataoutput(id);
+      return ret; 
+  }
+  
   public static List<Dataoutput> getAllDataOutputs() {
     DataoutputJpaController cont = new DataoutputJpaController(emf);
     List<Dataoutput> ret = cont.findDataoutputEntities();

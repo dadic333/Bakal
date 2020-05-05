@@ -29,6 +29,12 @@ public class PbxOutputBO {
       Logger.getLogger(PbxOutputBO.class.getName()).log(Level.SEVERE, null, ex);
     }
   }
+  
+    public static Pbxoutput findPBXOutputById(int id){
+      PbxoutputJpaController cont = new PbxoutputJpaController(emf);
+      Pbxoutput ret = cont.findPbxoutput(id);
+      return ret; 
+    }
 
   public static List<Pbxoutput> getAllPbxOutputs() {
     PbxoutputJpaController cont = new PbxoutputJpaController(emf);
