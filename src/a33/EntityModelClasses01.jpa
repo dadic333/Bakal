@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<entity-mappings v="5.4.1" rws="_1589316865442134" Pws="_1589316865442134" cws="_1589316865442134" persistenceUnitName="DEFAULT_PU" sm="false" xs="false" id="_158931686511377" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <entity compositePrimaryKeyClass="CableheadPK" abs="false" class="Cablehead" v="true" xre="false" m="false" rootElement="_158931686511377" id="_158931686512478">
+        <attributes>
+            <basic optional="true" attribute-type="String" v="true" name="building" id="_158931686513087">
+                <column name="BUILDING" unique="false" nullable="true" insertable="true" updatable="true" table="CABLEHEAD" length="50"/>
+            </basic>
+            <basic optional="true" attribute-type="String" v="true" name="name" id="_158931686513588">
+                <column name="NAME" unique="false" nullable="true" insertable="true" updatable="true" table="CABLEHEAD" length="60"/>
+            </basic>
+            <basic optional="true" attribute-type="String" v="true" name="note" id="_158931686513589">
+                <column name="NOTE" unique="false" nullable="true" insertable="true" updatable="true" table="CABLEHEAD" length="150"/>
+            </basic>
+            <basic optional="true" attribute-type="Integer" v="true" name="outputcount" id="_158931686513690">
+                <column name="OUTPUTCOUNT" unique="false" nullable="true" insertable="true" updatable="true" table="CABLEHEAD"/>
+            </basic>
+            <one-to-many own="false" collection-type="java.util.List" connected-entity-id="_158931686512581" connected-attribute-id="_1589316865139108" v="true" name="cabheadoutputCollection" id="_158931686513691"/>
+            <id attribute-type="Integer" v="true" name="id" id="_158931686512986">
+                <column name="ID" unique="false" nullable="false" insertable="true" updatable="true" table="CABLEHEAD"/>
+                <generated-value strategy="DEFAULT"/>
+            </id>
+        </attributes>
+        <table name="CABLEHEAD"/>
+    </entity>
+    <entity compositePrimaryKeyClass="DataoutputPK" abs="false" class="Dataoutput" v="true" xre="false" m="false" rootElement="_158931686511377" id="_158931686512579">
+        <attributes>
+            <basic optional="true" attribute-type="Integer" v="true" name="datadevout" id="_158931686513793">
+                <column name="DATADEVOUT" unique="false" nullable="true" insertable="true" updatable="true" table="DATAOUTPUT"/>
+            </basic>
+            <basic optional="true" attribute-type="String" v="true" name="mac" id="_158931686513794">
+                <column name="MAC" unique="false" nullable="true" insertable="true" updatable="true" table="DATAOUTPUT" length="20"/>
+            </basic>
+            <basic optional="true" attribute-type="String" v="true" name="note" id="_158931686513795">
+                <column name="NOTE" unique="false" nullable="true" insertable="true" updatable="true" table="DATAOUTPUT" length="100"/>
+            </basic>
+            <basic optional="true" attribute-type="Integer" v="true" name="phonenumber" id="_158931686513796">
+                <column name="PHONENUMBER" unique="false" nullable="true" insertable="true" updatable="true" table="DATAOUTPUT"/>
+            </basic>
+            <many-to-one primaryKey="false" connected-entity-id="_158931686512582" connected-attribute-id="_1589316865139114" v="true" name="deviceId" id="_158931686513897">
+                <join-column name="DEVICE_ID" rc="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </many-to-one>
+            <id attribute-type="Integer" v="true" name="id" id="_158931686513792">
+                <column name="ID" unique="false" nullable="false" insertable="true" updatable="true" table="DATAOUTPUT"/>
+                <generated-value strategy="DEFAULT"/>
+            </id>
+        </attributes>
+        <table name="DATAOUTPUT"/>
+    </entity>
+    <entity compositePrimaryKeyClass="PbxPK" abs="false" class="Pbx" v="true" xre="false" m="false" rootElement="_158931686511377" id="_158931686512580">
+        <attributes>
+            <basic optional="true" attribute-type="String" v="true" name="building" id="_158931686513899">
+                <column name="BUILDING" unique="false" nullable="true" insertable="true" updatable="true" table="PBX" length="50"/>
+            </basic>
+            <basic optional="true" attribute-type="String" v="true" name="name" id="_1589316865138100">
+                <column name="NAME" unique="false" nullable="true" insertable="true" updatable="true" table="PBX" length="60"/>
+            </basic>
+            <basic optional="true" attribute-type="String" v="true" name="note" id="_1589316865138101">
+                <column name="NOTE" unique="false" nullable="true" insertable="true" updatable="true" table="PBX" length="150"/>
+            </basic>
+            <basic optional="true" attribute-type="Integer" v="true" name="outputcount" id="_1589316865138102">
+                <column name="OUTPUTCOUNT" unique="false" nullable="true" insertable="true" updatable="true" table="PBX"/>
+            </basic>
+            <one-to-many own="false" collection-type="java.util.List" connected-entity-id="_158931686512585" connected-attribute-id="_1589316865140133" v="true" name="pbxoutputCollection" id="_1589316865138103"/>
+            <id attribute-type="Integer" v="true" name="id" id="_158931686513898">
+                <column name="ID" unique="false" nullable="false" insertable="true" updatable="true" table="PBX"/>
+                <generated-value strategy="DEFAULT"/>
+            </id>
+        </attributes>
+        <table name="PBX"/>
+    </entity>
+    <entity compositePrimaryKeyClass="CabheadoutputPK" abs="false" class="Cabheadoutput" v="true" xre="false" m="false" rootElement="_158931686511377" id="_158931686512581">
+        <attributes>
+            <basic optional="true" attribute-type="Integer" v="true" name="cabheadout" id="_1589316865139105">
+                <column name="CABHEADOUT" unique="false" nullable="true" insertable="true" updatable="true" table="CABHEADOUTPUT"/>
+            </basic>
+            <basic optional="true" attribute-type="String" v="true" name="note" id="_1589316865139106">
+                <column name="NOTE" unique="false" nullable="true" insertable="true" updatable="true" table="CABHEADOUTPUT" length="100"/>
+            </basic>
+            <basic optional="true" attribute-type="Integer" v="true" name="phonenumber" id="_1589316865139107">
+                <column name="PHONENUMBER" unique="false" nullable="true" insertable="true" updatable="true" table="CABHEADOUTPUT"/>
+            </basic>
+            <many-to-one primaryKey="false" connected-entity-id="_158931686512478" connected-attribute-id="_158931686513691" v="true" name="cableheadId" id="_1589316865139108">
+                <join-column name="CABLEHEAD_ID" rc="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </many-to-one>
+            <id attribute-type="Integer" v="true" name="id" id="_1589316865139104">
+                <column name="ID" unique="false" nullable="false" insertable="true" updatable="true" table="CABHEADOUTPUT"/>
+                <generated-value strategy="DEFAULT"/>
+            </id>
+        </attributes>
+        <table name="CABHEADOUTPUT"/>
+    </entity>
+    <entity compositePrimaryKeyClass="DatadevicePK" abs="false" class="Datadevice" v="true" xre="false" m="false" rootElement="_158931686511377" id="_158931686512582">
+        <attributes>
+            <basic optional="true" attribute-type="String" v="true" name="building" id="_1589316865139110">
+                <column name="BUILDING" unique="false" nullable="true" insertable="true" updatable="true" table="DATADEVICE" length="50"/>
+            </basic>
+            <basic optional="true" attribute-type="String" v="true" name="name" id="_1589316865139111">
+                <column name="NAME" unique="false" nullable="true" insertable="true" updatable="true" table="DATADEVICE" length="60"/>
+            </basic>
+            <basic optional="true" attribute-type="String" v="true" name="note" id="_1589316865139112">
+                <column name="NOTE" unique="false" nullable="true" insertable="true" updatable="true" table="DATADEVICE" length="150"/>
+            </basic>
+            <basic optional="true" attribute-type="Integer" v="true" name="outputcount" id="_1589316865139113">
+                <column name="OUTPUTCOUNT" unique="false" nullable="true" insertable="true" updatable="true" table="DATADEVICE"/>
+            </basic>
+            <one-to-many own="false" collection-type="java.util.List" connected-entity-id="_158931686512579" connected-attribute-id="_158931686513897" v="true" name="dataoutputCollection" id="_1589316865139114"/>
+            <id attribute-type="Integer" v="true" name="id" id="_1589316865139109">
+                <column name="ID" unique="false" nullable="false" insertable="true" updatable="true" table="DATADEVICE"/>
+                <generated-value strategy="DEFAULT"/>
+            </id>
+        </attributes>
+        <table name="DATADEVICE"/>
+    </entity>
+    <entity compositePrimaryKeyClass="TelexchangePK" abs="false" class="Telexchange" v="true" xre="false" m="false" rootElement="_158931686511377" id="_158931686512583">
+        <attributes>
+            <basic optional="true" attribute-type="String" v="true" name="building" id="_1589316865139116">
+                <column name="BUILDING" unique="false" nullable="true" insertable="true" updatable="true" table="TELEXCHANGE" length="50"/>
+            </basic>
+            <basic optional="true" attribute-type="String" v="true" name="name" id="_1589316865139117">
+                <column name="NAME" unique="false" nullable="true" insertable="true" updatable="true" table="TELEXCHANGE" length="60"/>
+            </basic>
+            <basic optional="true" attribute-type="String" v="true" name="note" id="_1589316865139118">
+                <column name="NOTE" unique="false" nullable="true" insertable="true" updatable="true" table="TELEXCHANGE" length="150"/>
+            </basic>
+            <basic optional="true" attribute-type="Integer" v="true" name="outputcount" id="_1589316865140119">
+                <column name="OUTPUTCOUNT" unique="false" nullable="true" insertable="true" updatable="true" table="TELEXCHANGE"/>
+            </basic>
+            <one-to-many own="false" collection-type="java.util.List" connected-entity-id="_158931686512584" connected-attribute-id="_1589316865140127" v="true" name="hwpositionCollection" id="_1589316865140120"/>
+            <id attribute-type="Integer" v="true" name="id" id="_1589316865139115">
+                <column name="ID" unique="false" nullable="false" insertable="true" updatable="true" table="TELEXCHANGE"/>
+                <generated-value strategy="DEFAULT"/>
+            </id>
+        </attributes>
+        <table name="TELEXCHANGE"/>
+    </entity>
+    <entity compositePrimaryKeyClass="HwpositionPK" abs="false" class="Hwposition" v="true" xre="false" m="false" rootElement="_158931686511377" id="_158931686512584">
+        <attributes>
+            <basic optional="true" attribute-type="String" v="true" name="name" id="_1589316865140122">
+                <column name="NAME" unique="false" nullable="true" insertable="true" updatable="true" table="HWPOSITION" length="10"/>
+            </basic>
+            <basic optional="true" attribute-type="String" v="true" name="note" id="_1589316865140123">
+                <column name="NOTE" unique="false" nullable="true" insertable="true" updatable="true" table="HWPOSITION" length="100"/>
+            </basic>
+            <basic optional="true" attribute-type="Integer" v="true" name="phonenumber" id="_1589316865140124">
+                <column name="PHONENUMBER" unique="false" nullable="true" insertable="true" updatable="true" table="HWPOSITION"/>
+            </basic>
+            <basic optional="true" attribute-type="Character" v="true" name="technologytype" id="_1589316865140125">
+                <column name="TECHNOLOGYTYPE" unique="false" nullable="true" insertable="true" updatable="true" table="HWPOSITION"/>
+            </basic>
+            <basic optional="true" attribute-type="Integer" v="true" name="telexchangeoutput" id="_1589316865140126">
+                <column name="TELEXCHANGEOUTPUT" unique="false" nullable="true" insertable="true" updatable="true" table="HWPOSITION"/>
+            </basic>
+            <many-to-one primaryKey="false" connected-entity-id="_158931686512583" connected-attribute-id="_1589316865140120" v="true" name="telechangeId" id="_1589316865140127">
+                <join-column name="TELECHANGE_ID" rc="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </many-to-one>
+            <id attribute-type="Integer" v="true" name="id" id="_1589316865140121">
+                <column name="ID" unique="false" nullable="false" insertable="true" updatable="true" table="HWPOSITION"/>
+                <generated-value strategy="DEFAULT"/>
+            </id>
+        </attributes>
+        <table name="HWPOSITION"/>
+    </entity>
+    <entity compositePrimaryKeyClass="PbxoutputPK" abs="false" class="Pbxoutput" v="true" xre="false" m="false" rootElement="_158931686511377" id="_158931686512585">
+        <attributes>
+            <basic optional="true" attribute-type="String" v="true" name="note" id="_1589316865140129">
+                <column name="NOTE" unique="false" nullable="true" insertable="true" updatable="true" table="PBXOUTPUT" length="100"/>
+            </basic>
+            <basic optional="true" attribute-type="Integer" v="true" name="pbxout" id="_1589316865140130">
+                <column name="PBXOUT" unique="false" nullable="true" insertable="true" updatable="true" table="PBXOUTPUT"/>
+            </basic>
+            <basic optional="true" attribute-type="Integer" v="true" name="phonenumber" id="_1589316865140131">
+                <column name="PHONENUMBER" unique="false" nullable="true" insertable="true" updatable="true" table="PBXOUTPUT"/>
+            </basic>
+            <basic optional="true" attribute-type="Character" v="true" name="technologytype" id="_1589316865140132">
+                <column name="TECHNOLOGYTYPE" unique="false" nullable="true" insertable="true" updatable="true" table="PBXOUTPUT"/>
+            </basic>
+            <many-to-one primaryKey="false" connected-entity-id="_158931686512580" connected-attribute-id="_1589316865138103" v="true" name="pbxId" id="_1589316865140133">
+                <join-column name="PBX_ID" rc="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </many-to-one>
+            <id attribute-type="Integer" v="true" name="id" id="_1589316865140128">
+                <column name="ID" unique="false" nullable="false" insertable="true" updatable="true" table="PBXOUTPUT"/>
+                <generated-value strategy="DEFAULT"/>
+            </id>
+        </attributes>
+        <table name="PBXOUTPUT"/>
+    </entity>
+    <c/>
+    <wsl>
+        <ws n="Main" id="_1589316865442134">
+            <i ref="_158931686512581" x="665" y="239"/>
+            <i ref="_158931686512580" x="23" y="239"/>
+            <i ref="_158931686512583" x="23" y="18"/>
+            <i ref="_158931686512582" x="447" y="18"/>
+            <i ref="_158931686512478" x="447" y="239"/>
+            <i ref="_158931686512579" x="665" y="18"/>
+            <i ref="_158931686512585" x="233" y="239"/>
+            <i ref="_158931686512584" x="233" y="18"/>
+        </ws>
+    </wsl>
+</entity-mappings>
