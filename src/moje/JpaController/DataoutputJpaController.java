@@ -165,7 +165,6 @@ public class DataoutputJpaController implements Serializable {
         em.getTransaction().begin();
         Query query = em.createQuery("SELECT e FROM Dataoutput e WHERE e.phonenumber = :value");
         query.setParameter("value", phoneNumber);
-
         List<Dataoutput> ret = query.getResultList();
         em.getTransaction().commit();
         em.close();

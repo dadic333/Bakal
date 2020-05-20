@@ -25,14 +25,14 @@ public class CableHeadBO {
     CableheadJpaController cont = new CableheadJpaController(emf);
     CabheadoutputJpaController outscont = new CabheadoutputJpaController(emf);
     Cablehead ret = new Cablehead();
-//    System.out.println("\nVýpis ID po  příkazu ____Cablehead ret = new Cablehead();___" + ret.getId()+"\n");  //ověření reference na objekt
+//  System.out.println("\nVýpis ID po příkazu ____Cablehead ret = new Cablehead();___" + ret.getId()+"\n");  //ověření reference na objekt
     ret.setName(name);
     ret.setBuilding(building);
     ret.setNote(note);
     ret.setOutputcount(outputCount);
     cont.create(ret);
-//    System.out.println("\nVýpis ID po  příkazu ____cont.create(ret);___" + ret.getId()+"\n"); //ověření reference na objekt
-//  create and fill CableHeadOutputList
+//  System.out.println("\nVýpis ID po příkazu ____cont.create(ret);___" + ret.getId()+"\n"); //ověření reference na objekt
+//  vytvoření a naplnění CableHeadOutputList
     List<Cabheadoutput> cabHeadOutputList = new ArrayList<Cabheadoutput>();
     for(int i=1; i<=outputCount; i++){
       Cabheadoutput newOutput = new Cabheadoutput();
@@ -104,7 +104,7 @@ public class CableHeadBO {
       } catch (NonexistentEntityException ex) {
         Logger.getLogger(CableHeadBO.class.getName()).log(Level.SEVERE, null, ex);
       }
-    if (cont.findCablehead(original.getId())==null){ 
+    if (cont.findCablehead(original.getId()) == null){ 
       CabHeadOutputBO.deleteOutputsWithoutCableHeadID();
     }
   }
@@ -133,7 +133,6 @@ public class CableHeadBO {
 //      Logger.getLogger(PhoneNumberBO.class.getName()).log(Level.SEVERE, null, ex);
 //    }
 */
-
   public static Cablehead editCableHead(int id, String name, String building, String note) {
     CableheadJpaController cont = new CableheadJpaController(emf);
     Cablehead newCableHead = new Cablehead();
@@ -161,7 +160,4 @@ public class CableHeadBO {
       }
     return newCableHead;
   }
-  
-  
-  
 }

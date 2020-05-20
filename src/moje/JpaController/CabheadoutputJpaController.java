@@ -219,7 +219,6 @@ public class CabheadoutputJpaController implements Serializable {
         em.getTransaction().begin();
         Query query = em.createQuery("SELECT e FROM Cabheadoutput e WHERE e.phonenumber = :value");
         query.setParameter("value", phoneNumber);
-
         List<Cabheadoutput> ret = query.getResultList();
         em.getTransaction().commit();
         em.close();

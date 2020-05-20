@@ -45,13 +45,13 @@ public class A33 {
 ////    editCableHead(218,"mame 4","zmenena budova a umisteni 4","zmenena poznamka 4");
 //    editCableHeadOutput(121,"NOTE ZMENA 7", 1234567897);
     
-//    createDataDeviceAndOutputs("DD5", "Uliční 25", "1.NP, dveře 101", 30);
-    getAllDataDevices();
-////    readDataDeviceAllParam(1);
-////    deleteDataDeviceAndOutpus(2);
-////    getAllDataOutputs();
-////    editDataDevice(1,"name 3","building 3","note 3");
-////    editDataOutput(2,"note 2", 123222, "d2:222:222:22");
+    createDataDeviceAndOutputs("DD11", "Uliční 25", "1.NP, dveře 101", 10);
+//    getAllDataDevices();
+//    readDataDeviceAllParam(1);
+//    deleteDataDeviceAndOutpus(2);
+//    getAllDataOutputs();
+//    editDataDevice(1,"name 3","building 3","note 3");
+//    editDataOutput(2,"note 2", 123222, "d2:222:222:22");
 
 //    createNewPbxAndOutputs("pokus4", "Českobratrská 4", "4.NP, dveře 44", 50);
 //    getAllPbx();
@@ -173,18 +173,6 @@ public class A33 {
     readDataDeviceAllParam(newdataDevice.getId());
   }
 
-  private static void getAllDataDevices() {
-    List<Datadevice> ret = DataDeviceBO.getAllDataDevices();
-    System.out.println("______________________-All DataDevices-________________________");
-    for (Datadevice dev : ret) {
-      System.out.println("ID= "+dev.getId()+"; name= "+dev.getName()
-              +"; building= "+dev.getBuilding()+"; note= "+dev.getNote()
-              +"; outputs cout= "+dev.getOutputcount()
-              +"; output List size= "+dev.getDataoutputList().size());
-    }
-    System.out.println("END__________________________________________________________________________________END");
-  }
-
   private static void readDataDeviceAllParam(Integer id) {
     Datadevice newDataDevice = DataDeviceBO.getDataDeviceByID(id);
     System.out.println(".....Read DataDevice all Parameters......");
@@ -211,6 +199,18 @@ public class A33 {
     }
   }
 
+  private static void getAllDataDevices() {
+    List<Datadevice> ret = DataDeviceBO.getAllDataDevices();
+    System.out.println("______________________-All DataDevices-________________________");
+    for (Datadevice dev : ret) {
+      System.out.println("ID= "+dev.getId()+"; name= "+dev.getName()
+              +"; building= "+dev.getBuilding()+"; note= "+dev.getNote()
+              +"; outputs cout= "+dev.getOutputcount()
+              +"; output List size= "+dev.getDataoutputList().size());
+    }
+    System.out.println("END__________________________________________________________________________________END");
+  }
+  
   private static void deleteDataDeviceAndOutpus(int id) {
     Datadevice dataDevice = DataDeviceBO.getDataDeviceByID(id);
     System.out.println("_______________VÝPIS DATADEVICE PŘED VYMAZÁNÍM_____________________");
